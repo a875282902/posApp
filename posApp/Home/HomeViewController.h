@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  HomeViewController.h
 //  posApp
 //
 //  Created by apple on 2018/7/4.
 //  Copyright © 2018年 apple. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ViewController : UIViewController
-
+@interface HomeViewController : BaseViewController
 
 @end
-
