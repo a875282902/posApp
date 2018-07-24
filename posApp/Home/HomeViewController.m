@@ -12,6 +12,7 @@
 #import "NavHidden.h"
 
 #import "ShopRegisterViewController.h"
+#import "LiveClassViewController.h"
 
 
 @interface HomeViewController ()<UIScrollViewDelegate>
@@ -130,6 +131,12 @@
         case 0:
         {
             ShopRegisterViewController *vc = [[ShopRegisterViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 6:
+        {
+            LiveClassViewController *vc = [[LiveClassViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

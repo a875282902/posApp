@@ -17,7 +17,6 @@
 @property (nonatomic,strong)UIImageView  * goodsCover;
 @property (nonatomic,strong)UIButton     * payBtn;
 
-
 @end
 
 @implementation OrderTableViewCell

@@ -171,7 +171,56 @@
 
 
 
+- (NSString *)HTML:(NSString *)html
 
+{
+    
+    NSScanner *theScaner = [NSScanner scannerWithString:html];
+    
+    NSDictionary *dict = @{@"&amp;":@"&", @"&lt;":@"<", @"&gt;":@">", @"&nbsp;":@"", @"&quot;":@"\"", @"width":@"wid",@"data-src":@"><img src"};
+    
+    while ([theScaner isAtEnd] == NO) {
+        
+        for (int i = 0; i <[dict allKeys].count; i ++) {
+            
+            [theScaner scanUpToString:[dict allKeys][i] intoString:NULL];
+            
+            html = [html stringByReplacingOccurrencesOfString:[dict allKeys][i] withString:[dict allValues][i]];
+            
+        }
+        
+    }
+    
+    return html;
+    
+}
+- (NSString *)heard:(NSString *)string{
+    
+    NSString *str = [NSString stringWithFormat:@"<html> \n"
+                     "<head> \n"
+                     "<style type=\"text/css\"> \n"
+                     "img {width:%.2f}"
+                     "</style> \n"
+                     "</head> \n"
+                     "<body>%@</body> \n"
+                     
+                     "</html>",KScreenWidth-MDXFrom6(30),string];
+    return str;
+}
+
+//时间戳转时间
+- (NSString *)stringToDate:(NSString *)str{
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"beijing"];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY.MM.dd"];
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    NSString* dateString = [formatter stringFromDate:date];
+    
+    return dateString;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

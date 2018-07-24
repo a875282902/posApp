@@ -49,7 +49,7 @@
     self.nameLabel = [Tools creatLabel:CGRectMake(30, 15, KScreenWidth - 210, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"name"];
     [self.backView addSubview:self.nameLabel];
     
-    self.phoneLabel = [Tools creatLabel:CGRectMake(KScreenWidth - 140, 15, 120, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"13213692344"];
+    self.phoneLabel = [Tools creatLabel:CGRectMake(KScreenWidth - 140, 15, 120, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self.backView addSubview:self.phoneLabel];
     
     self.addressLabel = [Tools creatLabel:CGRectMake(30, 39, KScreenWidth - 70, 37) font:[UIFont systemFontOfSize:15] color:GCOLOR alignment:(NSTextAlignmentLeft) title:@"addres"];
@@ -72,6 +72,16 @@
     [self.backView addSubview:self.editBtn];
 }
 
+- (void)bandDataWithShopModel:(ShopModel *)model{
+    
+    [self.nameLabel setText:model.truename];
+    [self.phoneLabel setText:model.phone];
+    [self.addressLabel setText:[NSString stringWithFormat:@"%@%@",model.pca,model.address]];
+    
+    
+    
+}
+
 - (void)copeAddress{
     [self.delegate copeAddressWithCell:self];
 }
@@ -87,7 +97,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    [self setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     // Configure the view for the selected state
 }
 

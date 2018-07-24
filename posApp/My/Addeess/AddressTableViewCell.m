@@ -34,10 +34,10 @@
 
 - (void)bandDataWith:(AddressModel *)model{
     
-    [self.nameLabel setText:model.userName];
+    [self.nameLabel setText:model.name];
     [self.phoneLabel setText:model.phone];
-    [self.locationLabel setText:[NSString stringWithFormat:@"%@%@%@%@",model.province,model.city,model.area,model.detail]];
-    [self.defaultButton setSelected:[model.is_default integerValue] == 0?YES:NO];
+//    [self.locationLabel setText:[NSString stringWithFormat:@"%@%@%@%@",model.province,model.city,model.area,model.detail]];
+    [self.defaultButton setSelected:[model.isdefault integerValue] == 0?YES:NO];
 }
 
 - (void)awakeFromNib {

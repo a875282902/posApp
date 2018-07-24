@@ -38,4 +38,7 @@
  */
 - (void) showHUD;
 - (void) hidenHUD;
+- (NSString *)HTML:(NSString *)html;
+- (NSString *)heard:(NSString *)string;
+- (NSString *)stringToDate:(NSString *)str;
 @end

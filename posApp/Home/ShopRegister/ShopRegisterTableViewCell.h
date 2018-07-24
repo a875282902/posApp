@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShopModel.h"
 
 @class ShopRegisterTableViewCell;
 
@@ -20,5 +21,7 @@
 @interface ShopRegisterTableViewCell : UITableViewCell
 
 @property (nonatomic,weak)id<ShopRegisterTableViewCellDelegate>delegate;
+
+- (void)bandDataWithShopModel:(ShopModel *)model;
 
 @end

@@ -49,7 +49,9 @@
 
 #define MDXFrom6Height(x) ([[UIScreen mainScreen] bounds].size.height/667.0 *(x))
 
+#define KURL @"http://api.ruilianmeng.lyqianniu.com/"
 
+#define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"utoken"]
 
 #ifdef __OBJC__
 

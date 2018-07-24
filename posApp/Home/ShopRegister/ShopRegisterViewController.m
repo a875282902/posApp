@@ -8,12 +8,15 @@
 
 #import "ShopRegisterViewController.h"
 #import "ShopRegisterTableViewCell.h"
+#import "ShopModel.h"
+#import "AddShopViewController.h"
 
 static NSString * const cellID = @"ShopRegisterTableViewCell";
 
 @interface ShopRegisterViewController ()<UITableViewDelegate,UITableViewDataSource,ShopRegisterTableViewCellDelegate>
 
-@property (nonatomic,strong)UITableView *tmpTableView;
+@property (nonatomic,strong)UITableView    * tmpTableView;
+@property (nonatomic,strong)NSMutableArray * dataArr;
 
 @end
 
@@ -26,10 +29,48 @@ static NSString * const cellID = @"ShopRegisterTableViewCell";
     [self.navigationItem setTitle:@"商户登记"];
     [self baseForDefaultLeftNavButton];
     
+    self.dataArr = [NSMutableArray array];
+    
     [self setNavigationRightBarButtonWithImageNamed:@"dengji-1"];
     
     [self.view addSubview:self.tmpTableView];
     
+    [self getShopListsData];
+    
+}
+
+- (void)getShopListsData{
+
+    NSDictionary *dic = @{@"service":@"Shop.Shoplists",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+                
+                [weakSelf.dataArr removeAllObjects];
+                
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    ShopModel *model = [[ShopModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+                [weakSelf.tmpTableView reloadData];
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 #pragma mark -- tableView
@@ -50,7 +91,7 @@ static NSString * const cellID = @"ShopRegisterTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,12 +103,22 @@ static NSString * const cellID = @"ShopRegisterTableViewCell";
     
     [cell setDelegate:self];
     
+    if (indexPath.row < self.dataArr.count) {
+        [cell bandDataWithShopModel:self.dataArr[indexPath.row]];
+    }
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 170;
+}
+
+- (void)rightButtonTouchUpInside:(id)sender{
+    
+    AddShopViewController *VC = [[AddShopViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)editAddressWithCell:(ShopRegisterTableViewCell *)cell{

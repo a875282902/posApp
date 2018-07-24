@@ -19,12 +19,13 @@
  "detail":"阿斯达所多"*/
 
 @property (nonatomic,copy)NSString *ID;
-@property (nonatomic,copy)NSString *userName;
+@property (nonatomic,copy)NSString *name;
 @property (nonatomic,copy)NSString *phone;
-@property (nonatomic,copy)NSString *is_default;
-@property (nonatomic,copy)NSString *province;
-@property (nonatomic,copy)NSString *city;
-@property (nonatomic,copy)NSString *area;
-@property (nonatomic,copy)NSString *detail;
+@property (nonatomic,copy)NSString *isdefault;
+@property (nonatomic,copy)NSString *provinceid;
+@property (nonatomic,copy)NSString *cityid;
+@property (nonatomic,copy)NSString *areaid;
+@property (nonatomic,copy)NSString *pca;
+@property (nonatomic,copy)NSString *address;
 
 @end

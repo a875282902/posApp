@@ -13,6 +13,8 @@
 #import "OrderViewController.h"
 #import "AddressViewController.h"
 
+#import "NoticeCenterViewController.h"
+
 static NSString * const cellID = @"myViewCell";
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -177,10 +179,19 @@ static NSString * const cellID = @"myViewCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
         if (indexPath.row == 1) {
-            AddressViewController *vc = [[AddressViewController alloc] init];
+            
+        }
+    }
+    
+    else if (indexPath.section == 1){
+        
+        if (indexPath.row == 2) {
+            NoticeCenterViewController *vc = [[NoticeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+    
+    
     
 }
 

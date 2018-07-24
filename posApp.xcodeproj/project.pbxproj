@@ -14,6 +14,21 @@
 		18605F8720F594C500814B83 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F7F20F594C500814B83 /* AddressTableViewCell.m */; };
 		18605F8820F594C500814B83 /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F8020F594C500814B83 /* SelectCity.m */; };
 		18605F8B20F5955D00814B83 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F8A20F5955D00814B83 /* AddressModel.m */; };
+		18605F8F20F6475E00814B83 /* LiveClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F8E20F6475E00814B83 /* LiveClassViewController.m */; };
+		18605F9220F647B200814B83 /* LiveClassTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F9120F647B200814B83 /* LiveClassTableViewCell.m */; };
+		18813BC8210304110040CDF3 /* GetToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 18813BC6210304110040CDF3 /* GetToken.m */; };
+		18813BCD2103050B0040CDF3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18813BCB2103050B0040CDF3 /* LoginViewController.m */; };
+		18813BCE2103050B0040CDF3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18813BCC2103050B0040CDF3 /* LoginViewController.xib */; };
+		18813BD221033C390040CDF3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18813BD021033C390040CDF3 /* RegisterViewController.m */; };
+		18813BD321033C390040CDF3 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18813BD121033C390040CDF3 /* RegisterViewController.xib */; };
+		18813BD62104CB840040CDF3 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18813BD52104CB840040CDF3 /* ShopModel.m */; };
+		18813BD92104D0190040CDF3 /* AddShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18813BD82104D0190040CDF3 /* AddShopViewController.m */; };
+		189817B52105818800881C12 /* NoticeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817B42105818800881C12 /* NoticeCenterViewController.m */; };
+		189817B8210581E700881C12 /* NoticeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817B7210581E700881C12 /* NoticeListView.m */; };
+		189817BB2105866900881C12 /* NoticeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817BA2105866900881C12 /* NoticeListTableViewCell.m */; };
+		189817BE210587DD00881C12 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817BD210587DD00881C12 /* NoticeModel.m */; };
+		189817C12105A4C600881C12 /* NoticeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817C02105A4C600881C12 /* NoticeDetailsViewController.m */; };
+		189817C52105B1C800881C12 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817C42105B1C800881C12 /* ActivityListViewController.m */; };
 		18D7E34D20ECA0AC007EE35E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E34C20ECA0AC007EE35E /* AppDelegate.m */; };
 		18D7E35320ECA0AC007EE35E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E35120ECA0AC007EE35E /* Main.storyboard */; };
 		18D7E35620ECA0AC007EE35E /* posApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E35420ECA0AC007EE35E /* posApp.xcdatamodeld */; };
@@ -141,6 +156,34 @@
 		18605F8220F594C500814B83 /* EditAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
 		18605F8920F5955D00814B83 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		18605F8A20F5955D00814B83 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		18605F8D20F6475E00814B83 /* LiveClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveClassViewController.h; sourceTree = "<group>"; };
+		18605F8E20F6475E00814B83 /* LiveClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveClassViewController.m; sourceTree = "<group>"; };
+		18605F9020F647B200814B83 /* LiveClassTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveClassTableViewCell.h; sourceTree = "<group>"; };
+		18605F9120F647B200814B83 /* LiveClassTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveClassTableViewCell.m; sourceTree = "<group>"; };
+		18813BC6210304110040CDF3 /* GetToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetToken.m; sourceTree = "<group>"; };
+		18813BC7210304110040CDF3 /* GetToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetToken.h; sourceTree = "<group>"; };
+		18813BCA2103050B0040CDF3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		18813BCB2103050B0040CDF3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18813BCC2103050B0040CDF3 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		18813BCF21033C390040CDF3 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		18813BD021033C390040CDF3 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		18813BD121033C390040CDF3 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		18813BD42104CB840040CDF3 /* ShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
+		18813BD52104CB840040CDF3 /* ShopModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
+		18813BD72104D0180040CDF3 /* AddShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddShopViewController.h; sourceTree = "<group>"; };
+		18813BD82104D0190040CDF3 /* AddShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddShopViewController.m; sourceTree = "<group>"; };
+		189817B32105818800881C12 /* NoticeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeCenterViewController.h; sourceTree = "<group>"; };
+		189817B42105818800881C12 /* NoticeCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeCenterViewController.m; sourceTree = "<group>"; };
+		189817B6210581E700881C12 /* NoticeListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeListView.h; sourceTree = "<group>"; };
+		189817B7210581E700881C12 /* NoticeListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeListView.m; sourceTree = "<group>"; };
+		189817B92105866900881C12 /* NoticeListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeListTableViewCell.h; sourceTree = "<group>"; };
+		189817BA2105866900881C12 /* NoticeListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeListTableViewCell.m; sourceTree = "<group>"; };
+		189817BC210587DD00881C12 /* NoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeModel.h; sourceTree = "<group>"; };
+		189817BD210587DD00881C12 /* NoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeModel.m; sourceTree = "<group>"; };
+		189817BF2105A4C600881C12 /* NoticeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeDetailsViewController.h; sourceTree = "<group>"; };
+		189817C02105A4C600881C12 /* NoticeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailsViewController.m; sourceTree = "<group>"; };
+		189817C32105B1C800881C12 /* ActivityListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
+		189817C42105B1C800881C12 /* ActivityListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		18D7E34820ECA0AC007EE35E /* posApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = posApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D7E34B20ECA0AC007EE35E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D7E34C20ECA0AC007EE35E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -377,6 +420,56 @@
 			path = Addeess;
 			sourceTree = "<group>";
 		};
+		18605F8C20F6473700814B83 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				18605F8D20F6475E00814B83 /* LiveClassViewController.h */,
+				18605F8E20F6475E00814B83 /* LiveClassViewController.m */,
+				18605F9020F647B200814B83 /* LiveClassTableViewCell.h */,
+				18605F9120F647B200814B83 /* LiveClassTableViewCell.m */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		18813BC9210304E20040CDF3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				18813BCA2103050B0040CDF3 /* LoginViewController.h */,
+				18813BCB2103050B0040CDF3 /* LoginViewController.m */,
+				18813BCC2103050B0040CDF3 /* LoginViewController.xib */,
+				18813BCF21033C390040CDF3 /* RegisterViewController.h */,
+				18813BD021033C390040CDF3 /* RegisterViewController.m */,
+				18813BD121033C390040CDF3 /* RegisterViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		189817B22105816800881C12 /* NoticeCenter */ = {
+			isa = PBXGroup;
+			children = (
+				189817B32105818800881C12 /* NoticeCenterViewController.h */,
+				189817B42105818800881C12 /* NoticeCenterViewController.m */,
+				189817B6210581E700881C12 /* NoticeListView.h */,
+				189817B7210581E700881C12 /* NoticeListView.m */,
+				189817B92105866900881C12 /* NoticeListTableViewCell.h */,
+				189817BA2105866900881C12 /* NoticeListTableViewCell.m */,
+				189817BF2105A4C600881C12 /* NoticeDetailsViewController.h */,
+				189817C02105A4C600881C12 /* NoticeDetailsViewController.m */,
+				189817BC210587DD00881C12 /* NoticeModel.h */,
+				189817BD210587DD00881C12 /* NoticeModel.m */,
+			);
+			path = NoticeCenter;
+			sourceTree = "<group>";
+		};
+		189817C22105B1A200881C12 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				189817C32105B1C800881C12 /* ActivityListViewController.h */,
+				189817C42105B1C800881C12 /* ActivityListViewController.m */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
 		18D7E33F20ECA0AC007EE35E = {
 			isa = PBXGroup;
 			children = (
@@ -400,7 +493,7 @@
 		18D7E34A20ECA0AC007EE35E /* posApp */ = {
 			isa = PBXGroup;
 			children = (
-				18D7E41C20ECA338007EE35E /* HeaderPreFix.pch */,
+				18813BC9210304E20040CDF3 /* Login */,
 				18D7E47D20ECABC6007EE35E /* Public */,
 				18D7E46120ECA4D2007EE35E /* BaseConfig */,
 				18D7E45D20ECA42D007EE35E /* Categoty */,
@@ -418,6 +511,7 @@
 				18D7E35720ECA0AE007EE35E /* Assets.xcassets */,
 				18D7E35920ECA0AE007EE35E /* LaunchScreen.storyboard */,
 				18D7E35C20ECA0AE007EE35E /* Info.plist */,
+				18D7E41C20ECA338007EE35E /* HeaderPreFix.pch */,
 				18D7E35D20ECA0AE007EE35E /* main.m */,
 				18D7E35420ECA0AC007EE35E /* posApp.xcdatamodeld */,
 			);
@@ -445,6 +539,8 @@
 		18D7E38020ECA237007EE35E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				189817C22105B1A200881C12 /* Activity */,
+				18605F8C20F6473700814B83 /* Channel */,
 				18D7E48A20ECEDED007EE35E /* ShopRegister */,
 				18D7E47420ECA4FB007EE35E /* HomeViewController.h */,
 				18D7E47520ECA4FB007EE35E /* HomeViewController.m */,
@@ -479,6 +575,7 @@
 		18D7E38420ECA263007EE35E /* My */ = {
 			isa = PBXGroup;
 			children = (
+				189817B22105816800881C12 /* NoticeCenter */,
 				18605F7720F5947D00814B83 /* Addeess */,
 				18D7E46B20ECA4DD007EE35E /* MyViewController.h */,
 				18D7E46C20ECA4DD007EE35E /* MyViewController.m */,
@@ -813,6 +910,8 @@
 		18D7E47D20ECABC6007EE35E /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				18813BC7210304110040CDF3 /* GetToken.h */,
+				18813BC6210304110040CDF3 /* GetToken.m */,
 				18D7E48820ECBB1E007EE35E /* Tools.h */,
 				18D7E48720ECBB1E007EE35E /* Tools.m */,
 				18D7E49420F335E0007EE35E /* NavHidden.h */,
@@ -841,6 +940,10 @@
 				18D7E48C20ECEE52007EE35E /* ShopRegisterViewController.m */,
 				18D7E48E20ECF1AC007EE35E /* ShopRegisterTableViewCell.h */,
 				18D7E48F20ECF1AC007EE35E /* ShopRegisterTableViewCell.m */,
+				18813BD72104D0180040CDF3 /* AddShopViewController.h */,
+				18813BD82104D0190040CDF3 /* AddShopViewController.m */,
+				18813BD42104CB840040CDF3 /* ShopModel.h */,
+				18813BD52104CB840040CDF3 /* ShopModel.m */,
 			);
 			path = ShopRegister;
 			sourceTree = "<group>";
@@ -949,6 +1052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D7E43120ECA338007EE35E /* 接口.rtf in Resources */,
+				18813BD321033C390040CDF3 /* RegisterViewController.xib in Resources */,
 				18D7E35B20ECA0AE007EE35E /* LaunchScreen.storyboard in Resources */,
 				18605F8320F594C500814B83 /* AddressTableViewCell.xib in Resources */,
 				18D7E43A20ECA338007EE35E /* IQKeyboardManager.bundle in Resources */,
@@ -956,6 +1060,7 @@
 				18D7E35820ECA0AE007EE35E /* Assets.xcassets in Resources */,
 				18D7E41F20ECA338007EE35E /* MJRefresh.bundle in Resources */,
 				18D7E35320ECA0AC007EE35E /* Main.storyboard in Resources */,
+				18813BCE2103050B0040CDF3 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,6 +1097,7 @@
 				18D7E42120ECA338007EE35E /* UIView+MJExtension.m in Sources */,
 				18D7E48920ECBB1E007EE35E /* Tools.m in Sources */,
 				18D7E48520ECB385007EE35E /* IanScrollView.m in Sources */,
+				189817B8210581E700881C12 /* NoticeListView.m in Sources */,
 				18D7E42A20ECA338007EE35E /* MJRefreshGifHeader.m in Sources */,
 				18605F8420F594C500814B83 /* EditAddressViewController.m in Sources */,
 				18D7E44520ECA338007EE35E /* AFURLSessionManager.m in Sources */,
@@ -1001,6 +1107,7 @@
 				18D7E35E20ECA0AE007EE35E /* main.m in Sources */,
 				18D7E44420ECA338007EE35E /* AFHTTPSessionManager.m in Sources */,
 				18D7E42420ECA338007EE35E /* MJRefreshBackNormalFooter.m in Sources */,
+				189817BB2105866900881C12 /* NoticeListTableViewCell.m in Sources */,
 				18D7E42B20ECA338007EE35E /* MJRefreshFooter.m in Sources */,
 				18D7E44A20ECA338007EE35E /* UIImage+WebP.m in Sources */,
 				18D7E43B20ECA338007EE35E /* IQKeyboardManager.m in Sources */,
@@ -1010,9 +1117,11 @@
 				18D7E45920ECA338007EE35E /* UIButton+WebCache.m in Sources */,
 				18605F8720F594C500814B83 /* AddressTableViewCell.m in Sources */,
 				18D7E42720ECA338007EE35E /* MJRefreshAutoNormalFooter.m in Sources */,
+				18813BC8210304110040CDF3 /* GetToken.m in Sources */,
 				18D7E43520ECA338007EE35E /* IQToolbar.m in Sources */,
 				18D7E44E20ECA338007EE35E /* UIImageView+HighlightedWebCache.m in Sources */,
 				18D7E47620ECA4FB007EE35E /* HomeViewController.m in Sources */,
+				18813BCD2103050B0040CDF3 /* LoginViewController.m in Sources */,
 				18D7E43020ECA338007EE35E /* MDWebviewPicModel.m in Sources */,
 				18D7E35620ECA0AC007EE35E /* posApp.xcdatamodeld in Sources */,
 				18D7E45C20ECA338007EE35E /* RequestSever.m in Sources */,
@@ -1023,33 +1132,41 @@
 				18D7E47020ECA4EA007EE35E /* FriendsViewController.m in Sources */,
 				18D7E45A20ECA338007EE35E /* HttpRequest.m in Sources */,
 				18D7E44820ECA338007EE35E /* AFSecurityPolicy.m in Sources */,
+				189817C12105A4C600881C12 /* NoticeDetailsViewController.m in Sources */,
 				18D7E43F20ECA338007EE35E /* IQUIScrollView+Additions.m in Sources */,
 				18D7E45720ECA338007EE35E /* UIImageView+WebCache.m in Sources */,
 				18D7E46820ECA4D2007EE35E /* BaseNaviViewController.m in Sources */,
+				18605F9220F647B200814B83 /* LiveClassTableViewCell.m in Sources */,
 				18D7E44920ECA338007EE35E /* MBProgressHUD.m in Sources */,
 				18D7E47920ECA536007EE35E /* RootViewController.m in Sources */,
 				18D7E45020ECA338007EE35E /* UIImage+GIF.m in Sources */,
 				18605F8620F594C500814B83 /* AddressViewController.m in Sources */,
 				18D7E44120ECA338007EE35E /* IQUIViewController+Additions.m in Sources */,
 				18D7E49C20F4592D007EE35E /* FirendsRealTableViewCell.m in Sources */,
+				18813BD221033C390040CDF3 /* RegisterViewController.m in Sources */,
 				18D7E47320ECA4F4007EE35E /* ResultsViewController.m in Sources */,
 				18D7E4A220F4F124007EE35E /* OrderTableViewCell.m in Sources */,
 				18D7E45120ECA338007EE35E /* UIImage+MultiFormat.m in Sources */,
 				18D7E47C20ECA5EA007EE35E /* UIColor+Category.m in Sources */,
 				18D7E43620ECA338007EE35E /* IQTitleBarButtonItem.m in Sources */,
+				18605F8F20F6475E00814B83 /* LiveClassViewController.m in Sources */,
 				18D7E42F20ECA338007EE35E /* MJRefreshComponent.m in Sources */,
 				18D7E45220ECA338007EE35E /* SDWebImageCompat.m in Sources */,
 				18D7E42620ECA338007EE35E /* MJRefreshAutoGifFooter.m in Sources */,
+				18813BD62104CB840040CDF3 /* ShopModel.m in Sources */,
 				18D7E42520ECA338007EE35E /* MJRefreshAutoStateFooter.m in Sources */,
 				18D7E43820ECA338007EE35E /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				189817C52105B1C800881C12 /* ActivityListViewController.m in Sources */,
 				18D7E43320ECA338007EE35E /* MDLaunchADView.m in Sources */,
 				18D7E48D20ECEE52007EE35E /* ShopRegisterViewController.m in Sources */,
 				18D7E42920ECA338007EE35E /* MJRefreshStateHeader.m in Sources */,
 				18D7E43220ECA338007EE35E /* MDHTMLService.m in Sources */,
 				18D7E44C20ECA338007EE35E /* SDWebImageManager.m in Sources */,
+				189817B52105818800881C12 /* NoticeCenterViewController.m in Sources */,
 				18D7E43E20ECA338007EE35E /* IQUITextFieldView+Additions.m in Sources */,
 				18D7E48620ECB385007EE35E /* IanScrollImageView.m in Sources */,
 				18605F8B20F5955D00814B83 /* AddressModel.m in Sources */,
+				18813BD92104D0190040CDF3 /* AddShopViewController.m in Sources */,
 				18D7E43420ECA338007EE35E /* IQTextView.m in Sources */,
 				18D7E45320ECA338007EE35E /* SDWebImagePrefetcher.m in Sources */,
 				18D7E43C20ECA338007EE35E /* IQNSArray+Sort.m in Sources */,
@@ -1069,6 +1186,7 @@
 				18D7E44220ECA338007EE35E /* IQKeyboardReturnKeyHandler.m in Sources */,
 				18D7E49020ECF1AC007EE35E /* ShopRegisterTableViewCell.m in Sources */,
 				18D7E45620ECA338007EE35E /* NSData+ImageContentType.m in Sources */,
+				189817BE210587DD00881C12 /* NoticeModel.m in Sources */,
 				18D7E45420ECA338007EE35E /* SDImageCache.m in Sources */,
 				18D7E46020ECA43A007EE35E /* UIImage+Category.m in Sources */,
 			);

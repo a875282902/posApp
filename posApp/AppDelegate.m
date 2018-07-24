@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,15 +21,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    if (@available(iOS 11.0, *)) {
-        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
-    }
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    [self.window setRootViewController:[[RootViewController alloc] init]];
+    
+    if (UTOKEN) {
+        [self.window setRootViewController:[[RootViewController alloc] init]];
+    }
+    else{
+
+        [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[LoginViewController alloc] init]]];
+    }
     
     [self.window makeKeyAndVisible];
     

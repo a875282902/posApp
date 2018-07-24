@@ -25,9 +25,9 @@
     [window addSubview:hud];
     
     [hud setMode:MBProgressHUDModeCustomView];
-    
-    [hud setDetailsLabelText:message];
-    
+    if ([message isKindOfClass:[NSString class]]) {
+        [hud setDetailsLabelText:message];
+    }
     [hud show:YES];
     
     [hud hide:YES afterDelay:2];
