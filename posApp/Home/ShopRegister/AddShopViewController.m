@@ -86,7 +86,7 @@
         [textField setFont:[UIFont systemFontOfSize:15]];
         [textField setPlaceholder:@"请输入"];
         [textField setTag:i];
-        [textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventTouchUpInside)];
+        [textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
         [textField setValue:GCOLOR forKeyPath:@"_placeholderLabel.textColor"];
         [self.tmpScrollView addSubview:textField];
         
@@ -257,6 +257,7 @@
             return;
         }
     }
+    
     NSArray * iArr = @[@"身份证正面照",@"身份证反面照",@"银行卡正面照",@"银行卡反面照",@"手持身份证正面照",@"营业执照照片",@"机器编码照片"];
     for (NSInteger i = 0 ; i < iArr.count ; i++) {
         if ([self.inputArr[i] length]==0) {

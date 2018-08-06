@@ -1,65 +1,41 @@
 //
-//  LiveClassViewController.m
+//  BusinessViewController.m
 //  posApp
 //
-//  Created by apple on 2018/7/11.
+//  Created by apple on 2018/8/1.
 //  Copyright © 2018年 apple. All rights reserved.
 //
 
-#import "LiveClassViewController.h"
-#import "LiveClassTableViewCell.h"
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import "Rotating.h"
+#import "BusinessViewController.h"
+#import "BusinessModel.h"
+#import "BusinessTableViewCell.h"
+#import "BusinessDetailsViewController.h"
 
-@interface LiveClassViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
-    NSInteger _page;
-}
+static NSString *const size = @"10";
 
-@property (nonatomic,strong)UITableView     * tmpTableView;
-@property (nonatomic,strong)NSMutableArray  * dataArr;
+@interface BusinessViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+
+@property (nonatomic,strong)UITableView    *tmpTableView;
+@property (nonatomic,strong)NSMutableArray *dataArr;
+@property (nonatomic,assign)NSInteger       page;
+
 
 @end
 
-@implementation LiveClassViewController
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        
-        [invocation setSelector:selector];
-        
-        [invocation setTarget:[UIDevice currentDevice]];
-        
-        int val = UIInterfaceOrientationPortrait;
-        [invocation setArgument:&val atIndex:2];
-        
-        [invocation invoke];
-        
-    }
-    
-    [Rotating shareRotating].isflag = NO;
-}
+@implementation BusinessViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self baseForDefaultLeftNavButton];
-    [self setTitle:@"视频教程"];
-    
-    _page = 1;
+    [self setTitle:@"业务辅助"];
     self.dataArr = [NSMutableArray array];
+    self.page = 1;
     [self.view addSubview:self.tmpTableView];
-    
     [self load];
     
-    [self.tmpTableView.header beginRefreshing];
+    [self pullDownRefresh];
 }
 
 #pragma mark -- refresh
@@ -67,15 +43,13 @@
     __weak typeof(self) weakSelf = self;
     
     self.tmpTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self->_page = 1;
-        
-        [weakSelf.dataArr removeAllObjects];
+        weakSelf.page = 1;
         [weakSelf.tmpTableView.footer resetNoMoreData];
         [weakSelf pullDownRefresh];
     }];
     
     self.tmpTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        self->_page ++;
+        weakSelf.page ++;
         [weakSelf pullUpLoadMore];
     }];
     
@@ -83,46 +57,43 @@
 //下拉刷新
 - (void)pullDownRefresh{
     
-    NSDictionary *dic = @{@"service":@"Video.Lists",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",_page]};
+    NSDictionary *dic = @{@"service":@"Yewu.Lists",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",self.page],@"size":size};
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
-        
+        [weakSelf.dataArr removeAllObjects];
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
-            
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dict in responseObject[@"data"]) {
-                    [weakSelf.dataArr addObject:dict];
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    BusinessModel *model = [[BusinessModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
                 }
-            }else{
-                
-                [weakSelf.tmpTableView.footer noticeNoMoreData];
             }
         }
         else{
             
             [ViewHelps showHUDWithText:responseObject[@"msg"]];
         }
-        
-        if (weakSelf.dataArr.count < self->_page*10) {
-            [weakSelf.tmpTableView.footer noticeNoMoreData];
-        }
         [weakSelf.tmpTableView reloadData];
         [weakSelf.tmpTableView.header endRefreshing];
         
+        if (weakSelf.dataArr.count < weakSelf.page * [size integerValue]) {
+            [weakSelf.tmpTableView.footer noticeNoMoreData];
+        }
+        
     } failure:^(NSError *error) {
-        [weakSelf.tmpTableView.header endRefreshing];
+        
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
+        [weakSelf.tmpTableView.header endRefreshing];
     }];
-    
 }
 //上拉加载
 - (void)pullUpLoadMore{
     
-    NSDictionary *dic = @{@"service":@"Video.Lists",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",_page]};
+    NSDictionary *dic = @{@"service":@"Yewu.Lists",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",self.page],@"size":size};
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -131,32 +102,28 @@
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dict in responseObject[@"data"]) {
-                    [weakSelf.dataArr addObject:dict];
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    BusinessModel *model = [[BusinessModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
                 }
-            }else{
-                
-                [weakSelf.tmpTableView.footer noticeNoMoreData];
             }
-            
         }
         else{
-            self->_page --;
+            
             [ViewHelps showHUDWithText:responseObject[@"msg"]];
         }
+        [weakSelf.tmpTableView reloadData];
         [weakSelf.tmpTableView.footer endRefreshing];
-        if (weakSelf.dataArr.count < self->_page*10) {
+        
+        if (weakSelf.dataArr.count < weakSelf.page * [size integerValue]) {
             [weakSelf.tmpTableView.footer noticeNoMoreData];
         }
         
-        [weakSelf.tmpTableView reloadData];
-
-        
     } failure:^(NSError *error) {
-        self->_page --;
-        [weakSelf.tmpTableView.footer endRefreshing];
+        weakSelf.page -- ;
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
+        [weakSelf.tmpTableView.footer endRefreshing];
     }];
 }
 
@@ -183,53 +150,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LiveClassTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LiveClassTableViewCell"];
+    BusinessTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BusinessTableViewCell"];
     if (!cell) {
-        cell = [[LiveClassTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"LiveClassTableViewCell"];
+        cell = [[BusinessTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"BusinessTableViewCell"];
     }
-    if (indexPath.row<self.dataArr.count) {
-        
-        [cell bandDataWithDictionary:self.dataArr[indexPath.row]];
-    }
+    if (indexPath.row < self.dataArr.count) {
     
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return MDXFrom6(180);
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.dataArr[indexPath.row][@"filepath"] length] !=0) {
-        [self showUrl:self.dataArr[indexPath.row][@"filepath"]];
-    }
-}
-
-- (void)showUrl:(NSString *)url{
     
-    MPMoviePlayerViewController *playerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:url]];
+    BusinessModel *model = self.dataArr[indexPath.row];
     
-    // 开启模态对话窗体
-    [self presentViewController:playerController animated:YES completion:^{
-        [Rotating shareRotating].isflag = YES;
-        if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-            
-            SEL selector = NSSelectorFromString(@"setOrientation:");
-            
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-            
-            [invocation setSelector:selector];
-            
-            [invocation setTarget:[UIDevice currentDevice]];
-            
-            int val = UIInterfaceOrientationLandscapeRight;
-            
-            [invocation setArgument:&val atIndex:2];
-            
-            [invocation invoke];
-        }
-    }];
+    BusinessDetailsViewController *vc = [[BusinessDetailsViewController alloc] init];
+    vc.businessID = model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

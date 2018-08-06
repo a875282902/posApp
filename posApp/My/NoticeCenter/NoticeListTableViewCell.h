@@ -10,4 +10,6 @@
 
 @interface NoticeListTableViewCell : UITableViewCell
 
+- (void)bandDataWithDic:(NSDictionary *)dic;
+
 @end

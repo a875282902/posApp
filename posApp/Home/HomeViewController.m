@@ -13,6 +13,9 @@
 
 #import "ShopRegisterViewController.h"
 #import "LiveClassViewController.h"
+#import "MallViewController.h"
+#import "BusinessViewController.h"
+#import "ActivityListViewController.h"
 
 
 @interface HomeViewController ()<UIScrollViewDelegate>
@@ -134,6 +137,27 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 1:
+        {
+            MallViewController *vc = [[MallViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            BusinessViewController *vc = [[BusinessViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 5:
+        {
+            ActivityListViewController *vc = [[ActivityListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+
+            
         case 6:
         {
             LiveClassViewController *vc = [[LiveClassViewController alloc] init];

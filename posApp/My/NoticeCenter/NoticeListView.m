@@ -145,13 +145,9 @@
     return _tmpTableView;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -160,7 +156,10 @@
     if (!cell) {
         cell = [[NoticeListTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"NoticeListTableViewCell"];
     }
-    
+    if (indexPath.row < self.dataArr.count) {
+        
+        [cell bandDataWithDic:self.dataArr[indexPath.row]];
+    }
     
     return cell;
 }
@@ -171,7 +170,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     NoticeDetailsViewController *vc = [[NoticeDetailsViewController alloc] init];
     vc.noticeID = self.dataArr[indexPath.row][@"id"];

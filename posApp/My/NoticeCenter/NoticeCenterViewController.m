@@ -98,6 +98,7 @@
         
         [UIView animateWithDuration:.2 animations:^{
             [self.lineView setCenter:CGPointMake(sender.center.x, self.lineView.center.y)];
+            [self.listScrollView setContentOffset:CGPointMake(KScreenWidth * sender.tag, 0)];
         }];
     }
 }

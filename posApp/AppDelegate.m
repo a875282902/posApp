@@ -11,6 +11,8 @@
 #import "LoginViewController.h"
 #import "BaseNaviViewController.h"
 
+#import "Rotating.h"
+
 @interface AppDelegate ()
 
 @end
@@ -20,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSLog(@"%@",UTOKEN);
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -38,6 +42,15 @@
     
     
     return YES;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    
+    if ([Rotating shareRotating].isflag) {
+        return UIInterfaceOrientationMaskAll;
+    }else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 

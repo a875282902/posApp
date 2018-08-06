@@ -77,9 +77,7 @@
     [self.nameLabel setText:model.truename];
     [self.phoneLabel setText:model.phone];
     [self.addressLabel setText:[NSString stringWithFormat:@"%@%@",model.pca,model.address]];
-    
-    
-    
+   
 }
 
 - (void)copeAddress{
