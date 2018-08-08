@@ -11,6 +11,8 @@
 #import "ShopModel.h"
 #import "AddShopViewController.h"
 
+#import "EditShopViewController.h"
+
 static NSString * const cellID = @"ShopRegisterTableViewCell";
 
 @interface ShopRegisterViewController ()<UITableViewDelegate,UITableViewDataSource,ShopRegisterTableViewCellDelegate>
@@ -123,7 +125,11 @@ static NSString * const cellID = @"ShopRegisterTableViewCell";
 
 - (void)editAddressWithCell:(ShopRegisterTableViewCell *)cell{
     
-    
+    NSIndexPath *index = [self.tmpTableView indexPathForCell:cell];
+    ShopModel *model = self.dataArr[index.row];
+    EditShopViewController *VC = [[EditShopViewController alloc] init];
+    VC.shop_id = model.ID;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)copeAddressWithCell:(ShopRegisterTableViewCell *)cell{

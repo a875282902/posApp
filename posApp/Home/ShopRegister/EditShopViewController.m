@@ -6,9 +6,9 @@
 //  Copyright © 2018年 apple. All rights reserved.
 //
 
-#import "AddShopViewController.h"
+#import "EditShopViewController.h"
 
-@interface AddShopViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
+@interface EditShopViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     UIView *_selectView;//选中需要添加image 的view
     NSString *_IDPhoto_front;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation AddShopViewController
+@implementation EditShopViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +42,52 @@
     
     [self.view addSubview:self.tmpScrollView];
     
-    [self setUpUI];
+    [self getShopData];
+}
+
+- (void)getShopData{
+    
+    NSDictionary *dic = @{@"service":@"Shop.Getinfo",@"utoken":UTOKEN,@"id":self.shop_id};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            NSDictionary *info = responseObject[@"data"];
+            
+            weakSelf.inputArr = [NSMutableArray arrayWithObjects:info[@"shopname"],
+                                 info[@"truename"],
+                                 info[@"phone"],
+                                 info[@"cardnumber"],
+                                 info[@"pca"],
+                                 info[@"address"],
+                                 info[@"banknumber"],
+                                 info[@"bankname"],
+                                 info[@"xuliehao"], nil];
+            
+            weakSelf.photoArr = [NSMutableArray arrayWithObjects:info[@"card1"],
+                                 info[@"card2"],
+                                 info[@"bank1"],
+                                 info[@"bank2"],
+                                 info[@"handcard"],
+                                 info[@"yingyezhizhao"],
+                                 info[@"jiqimaimg"],nil];
+            
+            [weakSelf setUpUI];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 #pragma mark -- scrollview
@@ -85,12 +130,8 @@
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(105, height, KScreenWidth - 120, 45)];
         [textField setFont:[UIFont systemFontOfSize:15]];
         [textField setPlaceholder:@"请输入"];
-        if (i==4) {
-            [textField setPlaceholder:@"请选择"];
-        
-        }
+        [textField setText:self.inputArr[i]];
         [textField setTag:i];
-        [textField setDelegate:self];
         [textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
         [textField setValue:GCOLOR forKeyPath:@"_placeholderLabel.textColor"];
         [self.tmpScrollView addSubview:textField];
@@ -119,15 +160,17 @@
         
         UIImageView *frontView = [Tools creatImage:CGRectMake(30, height, (KScreenWidth/2.0 - 50), (KScreenWidth/2.0 - 50)*7/10.0) image: i==0?@"sfz_1":@"yhk_1"];
         [frontView setTag:i];
+        [frontView sd_setImageWithURL:[NSURL URLWithString:self.photoArr[i+2]]];
         [frontView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectUploadIDPhotoFrontView:)]];
         [self.tmpScrollView addSubview:frontView];
         
         
         UIImageView *behindView = [Tools creatImage:CGRectMake(KScreenWidth/2.0 + 20, height, (KScreenWidth/2.0 - 50), (KScreenWidth/2.0 - 50)*7/10.0) image:i==0?@"sfz_2":@"yhk_2"];
         [behindView setTag:i];
+        [behindView sd_setImageWithURL:[NSURL URLWithString:self.photoArr[i+(i==0?1:3)]]];
         [behindView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectUploadIDPhotoBehindView:)]];
         [self.tmpScrollView addSubview:behindView];
-    
+        
         
         height += (KScreenWidth/2.0 - 50)*7/10.0 + 10;
         
@@ -162,6 +205,10 @@
     
     height += 25+97+10+30;
     [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height, KScreenWidth, 10)]];
+    if ([self.photoArr[4] length]>0) {
+        [backView addSubview:[Tools creatImage:CGRectMake(0, 0, backView.frame.size.width, backView.frame.size.height) url:self.photoArr[4] image:@""]];
+    }
+    
     
     height += 10;
     
@@ -185,11 +232,15 @@
         height += 50+44+10+50;
         
         [backView addSubview:[Tools creatImage:CGRectMake((KScreenWidth - 44)/2.0, 50 , 44, 44) image:@"plus"]];
-    
+        
         [backView addSubview:[Tools creatLabel:CGRectMake(15, 50+44+10, KScreenWidth - 30, 12) font:[UIFont systemFontOfSize:12] color:TCOLOR alignment:(NSTextAlignmentCenter) title:@"点击上传"]];
         
         
         [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height, KScreenWidth, 10)]];
+        
+        if ([self.photoArr[i+5] length]>0) {
+            [backView addSubview:[Tools creatImage:CGRectMake(0, 0, backView.frame.size.width, backView.frame.size.height) url:self.photoArr[i+5] image:@""]];
+        }
         
         height += 10;
     }
@@ -217,15 +268,6 @@
 - (void)textValueChange:(UITextField *)sender{
     
     [self.inputArr replaceObjectAtIndex:sender.tag withObject:sender.text];
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    if (textField.tag == 4) {
-        [self.view endEditing:YES];
-        return NO;
-    }
-    return YES;
 }
 
 - (void)selectUploadIDPhotoFrontView:(UITapGestureRecognizer *)sender{
@@ -413,13 +455,13 @@
 
 - (void)upLoadImage:(UIImage *)image{
     
-
+    
     NSData* pictureData = UIImageJPEGRepresentation(image,0.2);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
     NSLog(@"调用了image@String方法");
     //    NSLog(@"%@这个值是什么实现的？",pictureData);
     NSString* pictureDataString = [pictureData base64Encoding];
     
-
+    
     NSDictionary *dic = @{@"service":@"Main.Upload",@"utoken":UTOKEN,@"img":pictureDataString};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -470,7 +512,7 @@
             __block typeof(self) weakSelf = self;
             
             [_selectView.subviews enumerateObjectsUsingBlock:^(__kindof UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-               
+                
                 if ([obj isKindOfClass:[UIImageView class]]) {
                     [obj sd_setImageWithURL:[NSURL URLWithString:weakSelf.photoArr[self->index]]];
                 }
@@ -487,13 +529,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

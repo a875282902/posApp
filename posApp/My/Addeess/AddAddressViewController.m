@@ -173,40 +173,33 @@
         return;
     }
     
-//    NSString *path = [NSString stringWithFormat:@"%@/address/add",KURL];
-//    NSDictionary *dic = @{@"name":self.textArr[0],
-//                          @"mobile":self.textArr[1],
-//                          @"provice_id":[provincesDic valueForKey:@"key"],
-//                          @"city_id":[cityDic valueForKey:@"key"],
-//                          @"area_id":[countyDic valueForKey:@"key"],
-//                          @"address":self.textArr[5]};
-//
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//
-//            [self.navigationController popViewControllerAnimated:YES];
-//
-//        }
-//        else if ([responseObject[@"code"] integerValue] == 202){
-//
-//            [ViewHelps showHUDWithText:@"添加失败"];
-//        }
-//        else if ([responseObject[@"code"] integerValue] == 201){
-//
-//            [ViewHelps showHUDWithText:@"验证失败"];
-//        }
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
+    NSDictionary *dic = @{@"service":@"Member.Addaddress",@"utoken":UTOKEN,@"name":self.textArr[0],
+                          @"mobile":self.textArr[1],
+                          @"provice_id":[provincesDic valueForKey:@"key"],
+                          @"city_id":[cityDic valueForKey:@"key"],
+                          @"area_id":[countyDic valueForKey:@"key"],
+                          @"address":self.textArr[5]};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            [ViewHelps showHUDWithText:@"添加成功"];
+             [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 
 }
 

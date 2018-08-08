@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180F19D32119E49C0018F1CD /* EditShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19D22119E49C0018F1CD /* EditShopViewController.m */; };
+		180F19D6211A8BAE0018F1CD /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */; };
 		182CDAF92111510B00F28F4C /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAF82111510B00F28F4C /* MallViewController.m */; };
 		182CDAFE211152EC00F28F4C /* MallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAFD211152EC00F28F4C /* MallModel.m */; };
 		182CDB02211153EC00F28F4C /* MallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB00211153EC00F28F4C /* MallCollectionViewCell.m */; };
@@ -154,6 +156,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180F19D12119E49C0018F1CD /* EditShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditShopViewController.h; sourceTree = "<group>"; };
+		180F19D22119E49C0018F1CD /* EditShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditShopViewController.m; sourceTree = "<group>"; };
+		180F19D4211A8BAE0018F1CD /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		182CDAF72111510B00F28F4C /* MallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallViewController.h; sourceTree = "<group>"; };
 		182CDAF82111510B00F28F4C /* MallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallViewController.m; sourceTree = "<group>"; };
 		182CDAFC211152EC00F28F4C /* MallModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallModel.h; sourceTree = "<group>"; };
@@ -664,6 +670,8 @@
 				18D7E49220F332E6007EE35E /* OrderViewController.m */,
 				18D7E4A020F4F124007EE35E /* OrderTableViewCell.h */,
 				18D7E4A120F4F124007EE35E /* OrderTableViewCell.m */,
+				180F19D4211A8BAE0018F1CD /* PersonInfoViewController.h */,
+				180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -1025,6 +1033,8 @@
 				18D7E48F20ECF1AC007EE35E /* ShopRegisterTableViewCell.m */,
 				18813BD72104D0180040CDF3 /* AddShopViewController.h */,
 				18813BD82104D0190040CDF3 /* AddShopViewController.m */,
+				180F19D12119E49C0018F1CD /* EditShopViewController.h */,
+				180F19D22119E49C0018F1CD /* EditShopViewController.m */,
 				18813BD42104CB840040CDF3 /* ShopModel.h */,
 				18813BD52104CB840040CDF3 /* ShopModel.m */,
 			);
@@ -1172,6 +1182,7 @@
 			files = (
 				18D7E42020ECA338007EE35E /* UIScrollView+MJExtension.m in Sources */,
 				182CDB0D21119C0100F28F4C /* BusinessDetailsViewController.m in Sources */,
+				180F19D6211A8BAE0018F1CD /* PersonInfoViewController.m in Sources */,
 				18D7E49620F335E0007EE35E /* NavHidden.m in Sources */,
 				18D7E41D20ECA338007EE35E /* UIScrollView+MJRefresh.m in Sources */,
 				18D7E46A20ECA4D2007EE35E /* BaseModel.m in Sources */,
@@ -1222,6 +1233,7 @@
 				18D7E44820ECA338007EE35E /* AFSecurityPolicy.m in Sources */,
 				189817C12105A4C600881C12 /* NoticeDetailsViewController.m in Sources */,
 				18D7E43F20ECA338007EE35E /* IQUIScrollView+Additions.m in Sources */,
+				180F19D32119E49C0018F1CD /* EditShopViewController.m in Sources */,
 				18D7E45720ECA338007EE35E /* UIImageView+WebCache.m in Sources */,
 				18D7E46820ECA4D2007EE35E /* BaseNaviViewController.m in Sources */,
 				18605F9220F647B200814B83 /* LiveClassTableViewCell.m in Sources */,
@@ -1451,7 +1463,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7MT463WE3Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/posApp/HeaderPreFix.pch";
 				INFOPLIST_FILE = posApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1461,6 +1475,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = lsy.posApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1469,7 +1484,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7MT463WE3Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/posApp/HeaderPreFix.pch";
 				INFOPLIST_FILE = posApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1479,6 +1496,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = lsy.posApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

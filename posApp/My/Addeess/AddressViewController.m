@@ -44,38 +44,34 @@ static AddressTableViewCell * defaultCell;
 #pragma mark -- 数据
 - (void)requestData{
     
-//    NSString *path = [NSString stringWithFormat:@"%@/address/index",KURL];
-//
-//    NSDictionary *header = @{@"token":UTOKEN};
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        [self.dataArr removeAllObjects];
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
-//                for (NSDictionary *dic in responseObject[@"datas"]) {
-//                    AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
-//                    [self.dataArr addObject:model];
-//                }
-//            }
-//
-//            [self.tmpTableView reloadData];
-//        }
-//        else{
-//
-//            [ViewHelps showHUDWithText:responseObject[@"message"]];
-//        }
-//
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
+    NSDictionary *dic = @{@"service":@"Member.Addresslists",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
+                    [self.dataArr addObject:model];
+                }
+            }
+            
+            [self.tmpTableView reloadData];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 
 }
 
@@ -97,7 +93,7 @@ static AddressTableViewCell * defaultCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,10 +106,10 @@ static AddressTableViewCell * defaultCell;
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
     
-//    if (indexPath.row < self.dataArr.count) {
-//        [cell setDelegate:self];
-//        [cell bandDataWith:self.dataArr[indexPath.row]];
-//    }
+    if (indexPath.row < self.dataArr.count) {
+        [cell setDelegate:self];
+        [cell bandDataWith:self.dataArr[indexPath.row]];
+    }
     
     
     return cell;
@@ -162,42 +158,36 @@ static AddressTableViewCell * defaultCell;
     
     NSIndexPath *indexpath = [self.tmpTableView indexPathForCell:cell];
     
-//    AddressModel *model = self.dataArr[indexpath.row];
-//
-//    NSString *path = [NSString stringWithFormat:@"%@/address/setDefault",KURL];
-//
-//    NSDictionary *dic = @{@"id":model.ID};
-//
-//    NSDictionary *header = @{@"token":UTOKEN};
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//
-//            [cell.defaultButton setSelected:!cell.defaultButton.selected];
-//
-//            if (defaultCell && defaultCell != cell) {
-//                [defaultCell.defaultButton setSelected:NO];
-//            }
-//
-//            defaultCell = cell;
-//
-//        }
-//        else{
-//
-//            [ViewHelps showHUDWithText:responseObject[@"message"]];
-//        }
-//
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
+    AddressModel *model = self.dataArr[indexpath.row];
+    
+    NSDictionary *dic = @{@"service":@"Member.Setdefaultaddress",@"utoken":UTOKEN,@"id":model.ID};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+
+            [cell.defaultButton setSelected:!cell.defaultButton.selected];
+
+            if (defaultCell && defaultCell != cell) {
+                [defaultCell.defaultButton setSelected:NO];
+            }
+
+            defaultCell = cell;
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 
 }
 
@@ -248,38 +238,31 @@ static AddressTableViewCell * defaultCell;
 
 - (void)deleteAddressWithIndex:(NSIndexPath *)index{
     
-//    NSString *path = [NSString stringWithFormat:@"%@/address/delate_address",KURL];
-//
-//    AddressModel *model = self.dataArr[index.row];
-//
-//    NSDictionary *dic = @{@"id":model.ID};
-//
-//    NSDictionary *header = @{@"token":UTOKEN};
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES].label.text = @"删除中···";
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//
-//
-//            [self.dataArr removeObjectAtIndex:index.row];
-//            [self.tmpTableView deleteRowsAtIndexPaths:@[index] withRowAnimation:(UITableViewRowAnimationLeft)];
-//        }
-//        else{
-//
-//            [ViewHelps showHUDWithText:responseObject[@"message"]];
-//        }
-//
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
+    AddressModel *model = self.dataArr[index.row];
+
+    NSDictionary *dic = @{@"service":@"Member.Deladdress",@"utoken":UTOKEN,@"id":model.ID};
     
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            [weakSelf.dataArr removeObjectAtIndex:index.row];
+            [weakSelf.tmpTableView deleteRowsAtIndexPaths:@[index] withRowAnimation:(UITableViewRowAnimationLeft)];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 

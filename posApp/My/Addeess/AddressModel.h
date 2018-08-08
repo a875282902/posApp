@@ -9,14 +9,15 @@
 #import "BaseModel.h"
 
 @interface AddressModel : BaseModel
-/*"id":"20",
- "userName":"马骋",
- "phone":"17600739244",
- "is_default":"1",
- "province":"北京市",
- "city":"北京市",
- "area":"东城区",
- "detail":"阿斯达所多"*/
+/*"data[id]    字符串    id
+ data[name]    字符串    姓名
+ data[phone]    字符串    手机号
+ data[provinceid]    字符串    所在省
+ data[cityid]    字符串    所在市
+ data[areaid]    字符串    所在区
+ data[address]    字符串    详细地址
+ data[pca]    字符串    省市区
+ data[isdefault]*/
 
 @property (nonatomic,copy)NSString *ID;
 @property (nonatomic,copy)NSString *name;

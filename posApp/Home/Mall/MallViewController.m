@@ -7,9 +7,9 @@
 //
 
 #import "MallViewController.h"
-#import "MallModel.h"
 #import "MallCollectionViewCell.h"
 #import "MallDetailsViewController.h"
+#import "MallModel.h"
 
 static NSString *const size = @"10";
 

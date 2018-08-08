@@ -9,11 +9,14 @@
 #import "MyViewController.h"
 
 #import "NavHidden.h"
+#import "PersonInfoViewController.h"
+
 
 #import "OrderViewController.h"
 #import "AddressViewController.h"
 
 #import "NoticeCenterViewController.h"
+
 
 static NSString * const cellID = @"myViewCell";
 
@@ -62,6 +65,7 @@ static NSString * const cellID = @"myViewCell";
         UIImageView *header = [Tools creatImage:CGRectMake(0, 0, 60, 60) image:@""];
         [header setBackgroundColor:[UIColor blackColor]];
         [header.layer setCornerRadius:30];
+        [header addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonInfo)]];
         [header setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(100))];
         [_headerView addSubview:header];
         
@@ -179,7 +183,8 @@ static NSString * const cellID = @"myViewCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
         if (indexPath.row == 1) {
-            
+            AddressViewController *VC = [[AddressViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
         }
     }
     
@@ -190,11 +195,23 @@ static NSString * const cellID = @"myViewCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
-    
-    
-    
 }
 
+- (void)showPersonInfo{
+    
+    PersonInfoViewController *vc = [[PersonInfoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.tmpTableView) {
+        CGFloat offY = scrollView.contentOffset.y;
+        if (offY < 0) {
+            scrollView.contentOffset = CGPointZero;
+        }
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

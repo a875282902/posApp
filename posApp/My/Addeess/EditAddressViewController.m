@@ -47,43 +47,35 @@
 
 - (void)getLocationDetails{
     
-//    NSString *path = [NSString stringWithFormat:@"%@/address/info",KURL];
-//
-//    NSDictionary *dic = @{@"address_id":self.addressID};
-//
-//    NSDictionary *header = @{@"token":UTOKEN};
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//
-//            NSDictionary *dic = responseObject[@"datas"];
-//
-//            self.textArr = [NSMutableArray arrayWithObjects:dic[@"name"],dic[@"phone"],@"",@"",@"",dic[@"detailed"],@"",@"", nil];
-//
-//            self->provincesDic = @{@"key":dic[@"provice_id"],@"value":dic[@"province"]};
-//            self->cityDic      = @{@"key":dic[@"city_id"],@"value":dic[@"city"]};
-//            self->countyDic    = @{@"key":dic[@"area_id"],@"value":dic[@"area"]};
-//
-//            [self setUpUI];
-//
-//        }
-//        else{
-//
-//            [ViewHelps showHUDWithText:responseObject[@"message"]];
-//        }
-//
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
-
+    NSDictionary *dic = @{@"service":@"Member.Addressinfo",@"utoken":UTOKEN,@"address_id":self.addressID};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            NSDictionary *dic = responseObject[@"datas"];
+            
+            weakSelf.textArr = [NSMutableArray arrayWithObjects:dic[@"name"],dic[@"phone"],@"",@"",@"",dic[@"address"],@"",@"", nil];
+            
+            self->provincesDic = @{@"key":dic[@"provinceid"],@"value":dic[@"provinceid"]};
+            self->cityDic      = @{@"key":dic[@"cityid"],@"value":dic[@"cityid"]};
+            self->countyDic    = @{@"key":dic[@"areaid"],@"value":dic[@"areaid"]};
+            
+            [weakSelf setUpUI];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 
@@ -220,49 +212,34 @@
         return;
     }
     
-//    NSString *path = [NSString stringWithFormat:@"%@/address/edit",KURL];
-//    NSDictionary *header = @{@"token":UTOKEN};
-//    NSDictionary *dic = @{@"id":self.addressID,
-//                          @"name":self.textArr[0],
-//                          @"mobile":self.textArr[1],
-//                          @"provice_id":[provincesDic valueForKey:@"key"],
-//                          @"city_id":[cityDic valueForKey:@"key"],
-//                          @"area_id":[countyDic valueForKey:@"key"],
-//                          @"address":self.textArr[5]};
-//
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//
-//            [ViewHelps showHUDWithText:@"编辑成功"];
-//            [self.navigationController popViewControllerAnimated:YES];
-//
-//        }
-//        else if ([responseObject[@"code"] integerValue] == 202){
-//
-//            [ViewHelps showHUDWithText:@"编辑失败"];
-//        }
-//        else if ([responseObject[@"code"] integerValue] == 201){
-//
-//            if (![responseObject[@"message"] isKindOfClass:[NSNull class]]) {
-//                [ViewHelps showHUDWithText:responseObject[@"message"]];
-//            }
-//            else{
-//                [ViewHelps showHUDWithText:@"编辑失败"];
-//            }
-//        }
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
-//
+    NSDictionary *dic = @{@"service":@"Member.Editaddress",@"utoken":UTOKEN,@"id":self.addressID,
+                          @"name":self.textArr[0],
+                          @"mobile":self.textArr[1],
+                          @"provice_id":[provincesDic valueForKey:@"key"],
+                          @"city_id":[cityDic valueForKey:@"key"],
+                          @"area_id":[countyDic valueForKey:@"key"],
+                          @"address":self.textArr[5]};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            [ViewHelps showHUDWithText:@"编辑成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 #pragma mark --  选择城市的view
