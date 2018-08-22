@@ -15,7 +15,12 @@
 #import "OrderViewController.h"
 #import "AddressViewController.h"
 
+#import "RealNameViewController.h"
 #import "NoticeCenterViewController.h"
+
+#import "ComplaintsViewController.h"
+#import "AboutUsViewController.h"
+#import "SettingViewController.h"
 
 
 static NSString * const cellID = @"myViewCell";
@@ -25,6 +30,7 @@ static NSString * const cellID = @"myViewCell";
 
 @property (nonatomic,strong)UITableView *tmpTableView;
 @property (nonatomic,strong)UIView      *headerView;
+@property (nonatomic,assign)BOOL isReal;
 
 @end
 
@@ -35,6 +41,8 @@ static NSString * const cellID = @"myViewCell";
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self getMemberinfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -54,27 +62,61 @@ static NSString * const cellID = @"myViewCell";
     
 }
 
+- (void)getMemberinfo{
+    
+    NSDictionary *dic = @{@"service":@"Member.Memberinfo",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+        
+            [weakSelf setUpHeaderUI:responseObject[@"data"]];
+            
+            weakSelf.isReal = [responseObject[@"data"][@"status"] integerValue]==1?NO:YES;
+            
+            [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"data"][@"name"] forKey:@"name"];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
+
 - (UIView *)headerView{
     
     if (!_headerView) {
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(200))];
         [_headerView setBackgroundColor:[UIColor whiteColor]];
-        
-        [_headerView addSubview:[Tools creatImage:CGRectMake(0, 0, KScreenWidth, MDXFrom6(123)) image:@"profile_bg"]];
-        
-        UIImageView *header = [Tools creatImage:CGRectMake(0, 0, 60, 60) image:@""];
-        [header setBackgroundColor:[UIColor blackColor]];
-        [header.layer setCornerRadius:30];
-        [header addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonInfo)]];
-        [header setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(100))];
-        [_headerView addSubview:header];
-        
-        [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(140), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:TCOLOR alignment:(NSTextAlignmentCenter) title:@"name"]];
-        
-        [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(170), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:GCOLOR alignment:(NSTextAlignmentCenter) title:@"name"]];
-        
+
     }
     return _headerView;
+}
+
+- (void)setUpHeaderUI:(NSDictionary *)dic{
+    
+    [_headerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    [_headerView addSubview:[Tools creatImage:CGRectMake(0, 0, KScreenWidth, MDXFrom6(123)) image:@"profile_bg"]];
+    
+    UIImageView *header = [Tools creatImage:CGRectMake(0, 0, 60, 60) image:@""];
+    [header sd_setImageWithURL:[NSURL URLWithString:dic[@"headimg"]]];
+    [header.layer setCornerRadius:30];
+    [header addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonInfo)]];
+    [header setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(100))];
+    [_headerView addSubview:header];
+    
+    [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(140), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:TCOLOR alignment:(NSTextAlignmentCenter) title:dic[@"name"]]];
+    
+    [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(170), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:GCOLOR alignment:(NSTextAlignmentCenter) title:[NSString stringWithFormat:@"登录账号：%@",dic[@"phone"]]]];
 }
 
 #pragma mark -- tableView
@@ -135,7 +177,8 @@ static NSString * const cellID = @"myViewCell";
     [cell.detailTextLabel setTextColor:GCOLOR];
     
     if (indexPath.section == 1 && indexPath.row == 0) {
-        [cell.detailTextLabel setText:@"认证成功"];
+    
+        [cell.detailTextLabel setText:self.isReal?@"认证成功":@"未认证"];
         [cell.detailTextLabel setFont:[UIFont systemFontOfSize:15]];
     }
     
@@ -189,10 +232,35 @@ static NSString * const cellID = @"myViewCell";
     }
     
     else if (indexPath.section == 1){
-        
+        if (indexPath.row == 0) {
+            if (!self.isReal) {
+                RealNameViewController *vc = [[RealNameViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+        }
         if (indexPath.row == 2) {
             NoticeCenterViewController *vc = [[NoticeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    
+    else if (indexPath.section == 2){
+        
+        if (indexPath.row == 0) {
+            ComplaintsViewController *vc = [[ComplaintsViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        if (indexPath.row == 1) {
+            AboutUsViewController *VC = [[AboutUsViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        
+        if (indexPath.row == 2) {
+            SettingViewController *VC = [[SettingViewController alloc] init];
+            VC.isReal =self.isReal;
+            [self.navigationController pushViewController:VC animated:YES];
         }
     }
 }

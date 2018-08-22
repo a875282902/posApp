@@ -49,6 +49,8 @@
 
 #define MDXFrom6Height(x) ([[UIScreen mainScreen] bounds].size.height/667.0 *(x))
 
+#define KHeight(s,w,h,f) [s boundingRectWithSize:CGSizeMake(w, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:f]} context:nil]
+
 #define KURL @"http://api.ruilianmeng.lyqianniu.com/"
 
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"utoken"]

@@ -55,7 +55,7 @@
     
     for (NSInteger i = 0 ; i < 2 ; i++) {
         
-        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/2, KStatusBarHeight + 10, KScreenWidth/2, 35) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] title:i==0?@"未实名":@"已实名" image:@""];
+        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/2, KStatusBarHeight + 10, KScreenWidth/2, 35) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] title:i==0?@"已实名":@"未实名" image:@""];
         [btn setTag:i+1000];
         [btn setTitleColor:RCOLOR forState:(UIControlStateSelected)];
         if (i==0) {

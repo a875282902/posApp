@@ -8,8 +8,13 @@
 
 #import "ResultsViewController.h"
 #import "NavHidden.h"
+#import "HistoryResultsViewController.h"
 
 @interface ResultsViewController ()
+{
+    NSString * _todayN;
+}
+@property (nonatomic,strong)NSArray *dataArr;
 
 @end
 
@@ -22,6 +27,8 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self getInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -37,19 +44,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+}
+
+-  (void)getInfo{
     
-    [self setUpUI];
+    NSDictionary *dic = @{@"service":@"Member.Yeji",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            weakSelf.dataArr = responseObject[@"data"][@"data"];
+            self->_todayN = responseObject[@"data"][@"totalshop"];
+            [self setUpUI];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
 }
 
 #pragma mark -- UI & 背景渐变色  &  上面的信息   &下面的信息
 - (void)setUpUI{
+    
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     UIView *back = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KStatusBarHeight + MDXFrom6(145))];
     [self setUpBackgroundColor:back];
     [self.view addSubview:back];
     
 
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KStatusBarHeight, KScreenWidth, MDXFrom6(55)) font:[UIFont boldSystemFontOfSize:19] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"6月业界"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KStatusBarHeight, KScreenWidth, MDXFrom6(55)) font:[UIFont boldSystemFontOfSize:19] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"本月业界"]];
     
     CGFloat height = KStatusBarHeight + MDXFrom6(55);
     
@@ -63,7 +99,7 @@
     
     [self createFristResults];
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height + MDXFrom6(190), KScreenWidth, MDXFrom6(45)) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:@"5月业绩"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height + MDXFrom6(190), KScreenWidth, MDXFrom6(45)) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:@"上月业绩"]];
     
     [self createSecondResults];
     
@@ -82,7 +118,7 @@
     
     height += MDXFrom6(70);
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height, KScreenWidth, 20) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#9da9bc"] alignment:(NSTextAlignmentCenter) title:@"今日商盟已登记商户:0个"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height, KScreenWidth, 20) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#9da9bc"] alignment:(NSTextAlignmentCenter) title:[NSString stringWithFormat:@"今日商盟已登记商户:%@个",_todayN]]];
 }
 
 - (void)setUpBackgroundColor:(UIView *)view{
@@ -104,6 +140,9 @@
     CGFloat height = KStatusBarHeight + MDXFrom6(55);
     
     NSArray *tArr = @[@"联盟交易额（元）",@"新增商户（个）",@"个人交易额（元）",@"新增商户（个）"];
+    NSDictionary *dic = self.dataArr[0];
+    NSArray *dArr = @[dic[@"lianmengjiaoyie"],dic[@"lianmengshanghu"],dic[@"gerenjiaoyie"],dic[@"gerenshanghu"]];
+    
     
     for (NSInteger i = 0 ; i < 4 ; i ++) {
         
@@ -112,7 +151,7 @@
         
         [back addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(20), (KScreenWidth/2 - 15), MDXFrom6(25)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentCenter) title:tArr[i]]];
         
-        [back addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(45), (KScreenWidth/2 - 15), 25) font:[UIFont systemFontOfSize:24] color:[UIColor colorWithHexString:@"#f86959"] alignment:(NSTextAlignmentCenter) title:@"21312.11"]];
+        [back addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(45), (KScreenWidth/2 - 15), 25) font:[UIFont systemFontOfSize:24] color:[UIColor colorWithHexString:@"#f86959"] alignment:(NSTextAlignmentCenter) title:dArr[i]]];
     }
     
     [self setUpLine:CGRectMake(KScreenWidth/2, height+MDXFrom6(20), 1, MDXFrom6(50))];
@@ -127,6 +166,8 @@
     [self setUpLine:CGRectMake(0, height, KScreenWidth, 1)];
     
     NSArray *tArr = @[@"联盟交易额（元）",@"新增商户（个）",@"个人交易额（元）",@"新增商户（个）"];
+    NSDictionary *dic = self.dataArr[1];
+    NSArray *dArr = @[dic[@"lianmengjiaoyie"],dic[@"lianmengshanghu"],dic[@"gerenjiaoyie"],dic[@"gerenshanghu"]];
     
     for (NSInteger i = 0 ; i < 4 ; i ++) {
         
@@ -135,7 +176,7 @@
         
         [back addSubview:[Tools creatLabel:CGRectMake(15, MDXFrom6(20), (KScreenWidth/2 - 15) - 15 , MDXFrom6(25)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#9da9bc"] alignment:(NSTextAlignmentLeft) title:tArr[i]]];
         
-        [back addSubview:[Tools creatLabel:CGRectMake(15, MDXFrom6(45), (KScreenWidth/2 - 15), 25) font:[UIFont systemFontOfSize:18] color:[UIColor colorWithHexString:@"#6d7989"] alignment:(NSTextAlignmentLeft) title:@"21312.11"]];
+        [back addSubview:[Tools creatLabel:CGRectMake(15, MDXFrom6(45), (KScreenWidth/2 - 15), 25) font:[UIFont systemFontOfSize:18] color:[UIColor colorWithHexString:@"#6d7989"] alignment:(NSTextAlignmentLeft) title:dArr[i]]];
     }
 }
 
@@ -150,7 +191,8 @@
 
 - (void)showHistoryOrder:(UITapGestureRecognizer *)sender{
     
-    NSLog(@"历史");
+    HistoryResultsViewController *vc = [[HistoryResultsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

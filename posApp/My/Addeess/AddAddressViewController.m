@@ -20,7 +20,6 @@
 @property (nonatomic,strong)UIScrollView    * tmpScrollView;
 @property (nonatomic,strong)NSMutableArray  * textArr;
 @property (nonatomic,strong)SelectCity      * selectCity;
-@property (nonatomic,strong)NSMutableArray  * cityArr;
 
 @end
 
@@ -34,7 +33,6 @@
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
-    self.cityArr = [NSMutableArray array];
     
     [self.view addSubview:self.tmpScrollView];
     
@@ -61,10 +59,10 @@
 
 - (void)setUpUI{
     
-    NSArray *iArr = @[@"add_name",@"add_phone",@"add_add",@"",@"",@""];
-    NSArray *tArr = @[@"请输入您的姓名",@"请输入您的电话",@"请选择您的省份",@"请选择您的城市",@"请选择您所在的区",@"请输入您的详细地址",@""];
+    NSArray *iArr = @[@"add_name",@"add_phone",@"add_add",@""];
+    NSArray *tArr = @[@"请输入您的姓名",@"请输入您的电话",@"请选择您所在区域",@"请输入您的详细地址"];
     
-    for (NSInteger i = 0 ; i < 6 ; i ++ ) {
+    for (NSInteger i = 0 ; i < tArr.count ; i ++ ) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, MDXFrom6(20+50*i), KScreenWidth, MDXFrom6(50))];
         [self.tmpScrollView addSubview:backView];
         
@@ -77,7 +75,7 @@
             [backView addSubview:[Tools setLineView:CGRectMake(MDXFrom6(45), MDXFrom6(49), KScreenWidth - MDXFrom6(60), MDXFrom6(1))]];
         }
         
-        if (i != 2&& i!= 3 && i != 4) {
+        if (i != 2) {
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(45), 0, KScreenWidth - MDXFrom6(60), MDXFrom6(50))];
             [textField setPlaceholder:tArr[i]];
             [textField setFont:[UIFont systemFontOfSize:15]];
@@ -124,26 +122,11 @@
     
     [self.view endEditing:YES];
     
-    //tag  2为省份 3为城市 4为区
-    
-    if (sender.view.tag == 3) {
-        if (provincesDic.allKeys.count == 0) {
-            [ViewHelps showHUDWithText:@"请先选择省份"];
-            return;
-        }
-    }
-    
-    if (sender.view.tag == 4) {
-        if (cityDic.allKeys.count == 0) {
-            [ViewHelps showHUDWithText:@"请先选择城市"];
-            return;
-        }
-    }
     
     UILabel *label = (UILabel *)sender.view;
     selectLabel = label;
     
-    [self getLocation:sender.view.tag];
+    [self.selectCity show];
 }
 
 - (void)sureSave{
@@ -168,17 +151,17 @@
         [ViewHelps showHUDWithText:@"请选择您所在的区"];
         return;
     }
-    if ([self.textArr[5] length] == 0) {
+    if ([self.textArr[3] length] == 0) {
         [ViewHelps showHUDWithText:@"请输入您的详细地址"];
         return;
     }
     
     NSDictionary *dic = @{@"service":@"Member.Addaddress",@"utoken":UTOKEN,@"name":self.textArr[0],
-                          @"mobile":self.textArr[1],
-                          @"provice_id":[provincesDic valueForKey:@"key"],
-                          @"city_id":[cityDic valueForKey:@"key"],
-                          @"area_id":[countyDic valueForKey:@"key"],
-                          @"address":self.textArr[5]};
+                          @"phone":self.textArr[1],
+                          @"provinceid":[provincesDic valueForKey:@"id"],
+                          @"cityid":[cityDic valueForKey:@"id"],
+                          @"areaid":[countyDic valueForKey:@"id"],
+                          @"address":self.textArr[3]};
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -204,47 +187,6 @@
 }
 
 #pragma mark --  选择城市的view
-
-- (void)getLocation:(NSInteger)tag{//tag  2为省份 3为城市 4为区
-    
-//    NSString     *path   = [NSString stringWithFormat:@"%@/address/select_city",KURL];
-//    NSDictionary *header = @{@"token":UTOKEN};
-//    NSDictionary *dic    = @{@"id":tag==2?@"0":(tag==3?provincesDic[@"key"]:cityDic[@"key"])};
-//    
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    
-//    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-//        
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        
-//        if ([responseObject[@"code"] integerValue] == 200) {
-//            
-//            [self.cityArr removeAllObjects];
-//            
-//            if (![responseObject[@"datas"] isKindOfClass:[NSNull class]]) {
-//                
-//                for (NSDictionary *dic in responseObject[@"datas"]) {
-//                    [self.cityArr addObject:dic];
-//                }
-//                [self.selectCity setDataArr:self.cityArr];
-//                [self.selectCity setTag:tag];
-//                [self.selectCity show];
-//            }
-//            
-//        }
-//        else{
-//            
-//            [ViewHelps showHUDWithText:responseObject[@"message"]];
-//        }
-//        
-//        
-//    } failure:^(NSError * _Nullable error) {
-//        
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
-}
-
 - (SelectCity *)selectCity{
     
     if (!_selectCity) {
@@ -255,20 +197,14 @@
     return _selectCity;
 }
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
     
     [selectLabel setTextColor:[UIColor blackColor]];
-    [selectLabel setText:[info valueForKey:@"value"]];
+    [selectLabel setText:[NSString stringWithFormat:@"%@  %@ %@",province[@"name"],city[@"name"] ,area[@"name"]]];
     
-    if (selectCity.tag == 2) {
-        provincesDic = info;
-    }
-    if (selectCity.tag == 3) {
-        cityDic = info;
-    }
-    if (selectCity.tag == 4) {
-        countyDic = info;
-    }
+    provincesDic = province;
+    cityDic = city;
+    countyDic = area;
 }
 
 

@@ -16,6 +16,7 @@ static NSString *const cellID1 = @"FriendsInfoViewTableViewCell1";
 @interface FriendsInfoView ()<UITableViewDelegate,UITableViewDataSource,FirendsRealTableViewCellDelegate,FriendsNoTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
+@property (nonatomic,strong) NSArray *dataArr;
 
 @end
 
@@ -40,35 +41,44 @@ static NSString *const cellID1 = @"FriendsInfoViewTableViewCell1";
     
     _index = index;
     
-    [self.tmpTableView reloadData];
+    [self.tmpTableView.header beginRefreshing];
 }
 
 #pragma mark -- refresh
 - (void)load{
     self.tmpTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh:)];
     
-    self.tmpTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore:)];
-    
 }
 
 - (void)pullDownRefresh:(MJRefreshNormalHeader *)header{
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [header endRefreshing];
-        [self.tmpTableView reloadData];
-        [self.tmpTableView.footer resetNoMoreData];
-    });
+    NSDictionary *dic = @{@"service":@"Member.Mengyou",@"utoken":UTOKEN,@"status":[NSString stringWithFormat:@"%ld",2-_index]};
     
-}
-
-- (void)pullUpLoadMore:(MJRefreshAutoNormalFooter *)footer{
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            weakSelf.dataArr = responseObject[@"data"];
+            
+            [weakSelf.tmpTableView.header endRefreshing];
+            [weakSelf.tmpTableView reloadData];
+        }
+        else{
+            [weakSelf.tmpTableView.header endRefreshing];
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        [weakSelf.tmpTableView.header endRefreshing];
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [footer setState:(MJRefreshStateNoMoreData)];
-        [footer endRefreshing];
-        [footer noticeNoMoreData];
-        [self.tmpTableView reloadData];
-    });
 }
 
 #pragma mark -- tableView
@@ -89,31 +99,31 @@ static NSString *const cellID1 = @"FriendsInfoViewTableViewCell1";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.index == 0) {
+//    if (self.index == 0) {
         FirendsRealTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[FirendsRealTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:cellID];
         
         }
         [cell setDelegate:self];
-        
+        [cell bandDataWithDictionary:self.dataArr[indexPath.row]];
         return cell;
-    }
-    else{
-        FriendsNoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID1];
-        if (!cell) {
-            cell = [[FriendsNoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:cellID1];
-        }
-        [cell setDelegate:self];
-        
-        return cell;
-    }
-                
+//    }
+//    else{
+//        FriendsNoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID1];
+//        if (!cell) {
+//            cell = [[FriendsNoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:cellID1];
+//        }
+//        [cell setDelegate:self];
+//
+//        return cell;
+//    }
+//
     
 }
 
@@ -121,6 +131,20 @@ static NSString *const cellID1 = @"FriendsInfoViewTableViewCell1";
     NSIndexPath *indexPath = [self.tmpTableView indexPathForCell:cell];
     
     NSLog(@"%ld",indexPath.row);
+    
+    [self callPhone:self.dataArr[indexPath.row][@"phone"]];
+}
+
+-(void)callPhone:(NSString *)phoneNumber{
+    
+    NSString *cleanedString =[[phoneNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
+    NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str_url = [[NSString alloc]initWithFormat:@"tel://%@", escapedPhoneNumber];
+    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:str_url, escapedPhoneNumber]];
+    UIWebView *mCallWebview = [[UIWebView alloc] init] ;
+    [self addSubview:mCallWebview];
+    [mCallWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    
 }
 
 
@@ -128,7 +152,7 @@ static NSString *const cellID1 = @"FriendsInfoViewTableViewCell1";
     if (_index == 0) {
         return 150;
     }
-    return 110;
+    return 150;
 }
 
 /*

@@ -12,13 +12,11 @@
 
 @protocol SelectCityDelegate <NSObject>
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity;
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area;
 
 @end
 
 @interface SelectCity : UIView
-
-@property (nonatomic,strong)NSMutableArray *dataArr;
 
 - (void)show;
 

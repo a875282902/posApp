@@ -49,13 +49,13 @@ static AddressTableViewCell * defaultCell;
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
-        
+        [weakSelf.dataArr removeAllObjects];
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
-            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
-                for (NSDictionary *dic in responseObject[@"datas"]) {
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
                     AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
-                    [self.dataArr addObject:model];
+                    [weakSelf.dataArr addObject:model];
                 }
             }
             

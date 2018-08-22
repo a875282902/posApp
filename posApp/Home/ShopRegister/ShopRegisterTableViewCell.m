@@ -77,6 +77,10 @@
     [self.nameLabel setText:model.truename];
     [self.phoneLabel setText:model.phone];
     [self.addressLabel setText:[NSString stringWithFormat:@"%@%@",model.pca,model.address]];
+//    self.SNLabel setText:[NSString stringWithFormat:@"SN码:%@",model.]
+//    1资料已提交 2已通过 2未通过
+    NSArray *arr = @[@"",@"资料已提交",@"已通过",@"未通过"];
+    [self.stateLabel setText:arr[[model.status integerValue]]];
    
 }
 

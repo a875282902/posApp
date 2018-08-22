@@ -7,6 +7,7 @@
 //
 
 #import "ActivityListViewController.h"
+#import "ActivityDetailsViewController.h"
 
 static NSString *const size = @"10";
 
@@ -151,7 +152,7 @@ static NSString *const size = @"10";
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"ActivityListTableViewCell"];
     }
-    
+    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     [cell.contentView addSubview:[Tools creatImage:CGRectMake(MDXFrom6(10), MDXFrom6(15), KScreenWidth - MDXFrom6(20), MDXFrom6(120)) url:self.dataArr[indexPath.row][@"thumb"] image:@""]];
@@ -163,6 +164,14 @@ static NSString *const size = @"10";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return MDXFrom6(140);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ActivityDetailsViewController *vc = [[ActivityDetailsViewController alloc] init];
+    vc.img = self.dataArr[indexPath.row][@"img"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

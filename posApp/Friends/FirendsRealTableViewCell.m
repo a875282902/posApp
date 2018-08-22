@@ -45,18 +45,18 @@
     [self.backView addSubview:[Tools creatImage:CGRectMake(10, 50, 15, 15) image:@"add_add"]];
     [self.backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 160, 15, 15, 15) image:@"add_phone"]];
     
-    self.nameLabel = [Tools creatLabel:CGRectMake(30, 15, KScreenWidth - 210, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"name"];
+    self.nameLabel = [Tools creatLabel:CGRectMake(30, 15, KScreenWidth - 210, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self.backView addSubview:self.nameLabel];
     
-    self.phoneLabel = [Tools creatLabel:CGRectMake(KScreenWidth - 140, 15, 120, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"13213692344"];
+    self.phoneLabel = [Tools creatLabel:CGRectMake(KScreenWidth - 140, 15, 120, 15) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self.backView addSubview:self.phoneLabel];
     
-    self.addressLabel = [Tools creatLabel:CGRectMake(30, 39, KScreenWidth - 70, 37) font:[UIFont systemFontOfSize:15] color:GCOLOR alignment:(NSTextAlignmentLeft) title:@"addres"];
+    self.addressLabel = [Tools creatLabel:CGRectMake(30, 39, KScreenWidth - 70, 37) font:[UIFont systemFontOfSize:15] color:GCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self.backView addSubview:self.addressLabel];
     
     [self.backView addSubview:[Tools setLineView:CGRectMake(0, 90, KScreenWidth - 30, 1)]];
     
-    self.stateLabel = [Tools creatLabel:CGRectMake(10, 90, 200, 45) font:[UIFont systemFontOfSize:12] color:GCOLOR alignment:(NSTextAlignmentLeft) title:@"注册时间：2013-12-3"];
+    self.stateLabel = [Tools creatLabel:CGRectMake(10, 90, 200, 45) font:[UIFont systemFontOfSize:12] color:GCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self.backView addSubview:self.stateLabel];
     
     self.copBtn = [Tools creatButton:CGRectMake(KScreenWidth - 130 , 97.5, 90, 30) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:@"联系TA" image:@"phone_white"];
@@ -67,6 +67,34 @@
     
 }
 
+- (void)bandDataWithDictionary:(NSDictionary *)dic{
+    
+    if ([dic[@"name"] isKindOfClass:[NSString class]]) {
+        [self.nameLabel setText:dic[@"name"]];
+    }
+    
+    [self.phoneLabel setText:dic[@"phone"]];
+    if ([dic[@"pca"] isKindOfClass:[NSString class]]) {
+       [self.addressLabel setText:dic[@"pca"]];
+    }
+    if ([dic[@"createtime"] isKindOfClass:[NSString class]]) {
+        [self.stateLabel setText:[NSString stringWithFormat:@"注册时间:%@",[self stringToDate:dic[@"createtime"]]]];
+    }
+    
+}
+//时间戳转时间
+- (NSString *)stringToDate:(NSString *)str{
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"beijing"];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    NSString* dateString = [formatter stringFromDate:date];
+    
+    return dateString;
+}
 - (void)copeAddress{
     
     [self.delegate contactUserWithCell:self];

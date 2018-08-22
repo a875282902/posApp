@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		180F19D32119E49C0018F1CD /* EditShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19D22119E49C0018F1CD /* EditShopViewController.m */; };
 		180F19D6211A8BAE0018F1CD /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */; };
+		180F19D9211ABA910018F1CD /* RealNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19D8211ABA910018F1CD /* RealNameViewController.m */; };
+		180F19DC211AC1E10018F1CD /* ComplaintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19DB211AC1E10018F1CD /* ComplaintsViewController.m */; };
+		180F19E0211AC76A0018F1CD /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19DE211AC76A0018F1CD /* AboutUsViewController.m */; };
+		180F19E4211ACE2F0018F1CD /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19E3211ACE2F0018F1CD /* SettingViewController.m */; };
+		180F19E7211AD23A0018F1CD /* ChangeBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19E6211AD23A0018F1CD /* ChangeBankViewController.m */; };
+		180F19EA211AD2450018F1CD /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19E9211AD2450018F1CD /* ChangePasswordViewController.m */; };
+		180F19F3211ADD000018F1CD /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19F1211ADD000018F1CD /* ForgetViewController.m */; };
+		180F19F4211ADD000018F1CD /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F19F2211ADD000018F1CD /* ForgetViewController.xib */; };
+		180F19F7211BD66F0018F1CD /* ShopMaintainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19F6211BD66F0018F1CD /* ShopMaintainViewController.m */; };
+		180F19FA211BD6D60018F1CD /* ShopMaintainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19F9211BD6D60018F1CD /* ShopMaintainView.m */; };
+		180F19FD211BD73F0018F1CD /* ShopMaintainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19FC211BD73F0018F1CD /* ShopMaintainTableViewCell.m */; };
+		180F1A00211BE2870018F1CD /* MyEarningsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19FF211BE2870018F1CD /* MyEarningsViewController.m */; };
 		182CDAF92111510B00F28F4C /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAF82111510B00F28F4C /* MallViewController.m */; };
 		182CDAFE211152EC00F28F4C /* MallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAFD211152EC00F28F4C /* MallModel.m */; };
 		182CDB02211153EC00F28F4C /* MallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB00211153EC00F28F4C /* MallCollectionViewCell.m */; };
@@ -42,6 +54,17 @@
 		189817BE210587DD00881C12 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817BD210587DD00881C12 /* NoticeModel.m */; };
 		189817C12105A4C600881C12 /* NoticeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817C02105A4C600881C12 /* NoticeDetailsViewController.m */; };
 		189817C52105B1C800881C12 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189817C42105B1C800881C12 /* ActivityListViewController.m */; };
+		18C2A45D212C4CEE00E35766 /* ActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2A45C212C4CEE00E35766 /* ActivityDetailsViewController.m */; };
+		18C2A461212CEEFE00E35766 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2A460212CEEFE00E35766 /* ShareViewController.m */; };
+		18C2A468212CF4D900E35766 /* DirectlyRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2A466212CF4D900E35766 /* DirectlyRegisterViewController.m */; };
+		18C2A469212CF4D900E35766 /* DirectlyRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2A467212CF4D900E35766 /* DirectlyRegisterViewController.xib */; };
+		18C2A46C212CFE4300E35766 /* MJPopTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2A46B212CFE4300E35766 /* MJPopTool.m */; };
+		18C2A46F212D005800E35766 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2A46E212D005800E35766 /* ShareView.m */; };
+		18C8F384212D0D8900DDEDBC /* OnlineServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F383212D0D8900DDEDBC /* OnlineServicesViewController.m */; };
+		18C8F387212D457300DDEDBC /* QuestDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F386212D457300DDEDBC /* QuestDetailsViewController.m */; };
+		18C8F38A212D4C6500DDEDBC /* HistoryResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F389212D4C6500DDEDBC /* HistoryResultsViewController.m */; };
+		18C8F38D212D51EB00DDEDBC /* HistoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F38C212D51EB00DDEDBC /* HistoryInfoView.m */; };
+		18C8F390212D523000DDEDBC /* HistioryResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F38F212D523000DDEDBC /* HistioryResultTableViewCell.m */; };
 		18D7E34D20ECA0AC007EE35E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E34C20ECA0AC007EE35E /* AppDelegate.m */; };
 		18D7E35320ECA0AC007EE35E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E35120ECA0AC007EE35E /* Main.storyboard */; };
 		18D7E35620ECA0AC007EE35E /* posApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E35420ECA0AC007EE35E /* posApp.xcdatamodeld */; };
@@ -160,6 +183,29 @@
 		180F19D22119E49C0018F1CD /* EditShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditShopViewController.m; sourceTree = "<group>"; };
 		180F19D4211A8BAE0018F1CD /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
 		180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
+		180F19D7211ABA910018F1CD /* RealNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealNameViewController.h; sourceTree = "<group>"; };
+		180F19D8211ABA910018F1CD /* RealNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealNameViewController.m; sourceTree = "<group>"; };
+		180F19DA211AC1E10018F1CD /* ComplaintsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintsViewController.h; sourceTree = "<group>"; };
+		180F19DB211AC1E10018F1CD /* ComplaintsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintsViewController.m; sourceTree = "<group>"; };
+		180F19DD211AC76A0018F1CD /* AboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		180F19DE211AC76A0018F1CD /* AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		180F19E2211ACE2F0018F1CD /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		180F19E3211ACE2F0018F1CD /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		180F19E5211AD23A0018F1CD /* ChangeBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeBankViewController.h; sourceTree = "<group>"; };
+		180F19E6211AD23A0018F1CD /* ChangeBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeBankViewController.m; sourceTree = "<group>"; };
+		180F19E8211AD2450018F1CD /* ChangePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		180F19E9211AD2450018F1CD /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		180F19F0211ADD000018F1CD /* ForgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
+		180F19F1211ADD000018F1CD /* ForgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
+		180F19F2211ADD000018F1CD /* ForgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
+		180F19F5211BD66F0018F1CD /* ShopMaintainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMaintainViewController.h; sourceTree = "<group>"; };
+		180F19F6211BD66F0018F1CD /* ShopMaintainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMaintainViewController.m; sourceTree = "<group>"; };
+		180F19F8211BD6D60018F1CD /* ShopMaintainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMaintainView.h; sourceTree = "<group>"; };
+		180F19F9211BD6D60018F1CD /* ShopMaintainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMaintainView.m; sourceTree = "<group>"; };
+		180F19FB211BD73F0018F1CD /* ShopMaintainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMaintainTableViewCell.h; sourceTree = "<group>"; };
+		180F19FC211BD73F0018F1CD /* ShopMaintainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMaintainTableViewCell.m; sourceTree = "<group>"; };
+		180F19FE211BE2870018F1CD /* MyEarningsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEarningsViewController.h; sourceTree = "<group>"; };
+		180F19FF211BE2870018F1CD /* MyEarningsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyEarningsViewController.m; sourceTree = "<group>"; };
 		182CDAF72111510B00F28F4C /* MallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallViewController.h; sourceTree = "<group>"; };
 		182CDAF82111510B00F28F4C /* MallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallViewController.m; sourceTree = "<group>"; };
 		182CDAFC211152EC00F28F4C /* MallModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallModel.h; sourceTree = "<group>"; };
@@ -221,6 +267,27 @@
 		189817C02105A4C600881C12 /* NoticeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailsViewController.m; sourceTree = "<group>"; };
 		189817C32105B1C800881C12 /* ActivityListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
 		189817C42105B1C800881C12 /* ActivityListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
+		18C2A45B212C4CEE00E35766 /* ActivityDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsViewController.h; sourceTree = "<group>"; };
+		18C2A45C212C4CEE00E35766 /* ActivityDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsViewController.m; sourceTree = "<group>"; };
+		18C2A45F212CEEFE00E35766 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		18C2A460212CEEFE00E35766 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		18C2A465212CF4D900E35766 /* DirectlyRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DirectlyRegisterViewController.h; sourceTree = "<group>"; };
+		18C2A466212CF4D900E35766 /* DirectlyRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DirectlyRegisterViewController.m; sourceTree = "<group>"; };
+		18C2A467212CF4D900E35766 /* DirectlyRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectlyRegisterViewController.xib; sourceTree = "<group>"; };
+		18C2A46A212CFE4300E35766 /* MJPopTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopTool.h; sourceTree = "<group>"; };
+		18C2A46B212CFE4300E35766 /* MJPopTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopTool.m; sourceTree = "<group>"; };
+		18C2A46D212D005800E35766 /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		18C2A46E212D005800E35766 /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		18C8F382212D0D8900DDEDBC /* OnlineServicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlineServicesViewController.h; sourceTree = "<group>"; };
+		18C8F383212D0D8900DDEDBC /* OnlineServicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnlineServicesViewController.m; sourceTree = "<group>"; };
+		18C8F385212D457300DDEDBC /* QuestDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestDetailsViewController.h; sourceTree = "<group>"; };
+		18C8F386212D457300DDEDBC /* QuestDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestDetailsViewController.m; sourceTree = "<group>"; };
+		18C8F388212D4C6500DDEDBC /* HistoryResultsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryResultsViewController.h; sourceTree = "<group>"; };
+		18C8F389212D4C6500DDEDBC /* HistoryResultsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryResultsViewController.m; sourceTree = "<group>"; };
+		18C8F38B212D51EB00DDEDBC /* HistoryInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryInfoView.h; sourceTree = "<group>"; };
+		18C8F38C212D51EB00DDEDBC /* HistoryInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInfoView.m; sourceTree = "<group>"; };
+		18C8F38E212D523000DDEDBC /* HistioryResultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistioryResultTableViewCell.h; sourceTree = "<group>"; };
+		18C8F38F212D523000DDEDBC /* HistioryResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistioryResultTableViewCell.m; sourceTree = "<group>"; };
 		18D7E34820ECA0AC007EE35E /* posApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = posApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D7E34B20ECA0AC007EE35E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D7E34C20ECA0AC007EE35E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -525,6 +592,9 @@
 				18813BCF21033C390040CDF3 /* RegisterViewController.h */,
 				18813BD021033C390040CDF3 /* RegisterViewController.m */,
 				18813BD121033C390040CDF3 /* RegisterViewController.xib */,
+				180F19F0211ADD000018F1CD /* ForgetViewController.h */,
+				180F19F1211ADD000018F1CD /* ForgetViewController.m */,
+				180F19F2211ADD000018F1CD /* ForgetViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -551,8 +621,24 @@
 			children = (
 				189817C32105B1C800881C12 /* ActivityListViewController.h */,
 				189817C42105B1C800881C12 /* ActivityListViewController.m */,
+				18C2A45B212C4CEE00E35766 /* ActivityDetailsViewController.h */,
+				18C2A45C212C4CEE00E35766 /* ActivityDetailsViewController.m */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		18C2A45E212CEEE400E35766 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				18C2A45F212CEEFE00E35766 /* ShareViewController.h */,
+				18C2A460212CEEFE00E35766 /* ShareViewController.m */,
+				18C2A465212CF4D900E35766 /* DirectlyRegisterViewController.h */,
+				18C2A466212CF4D900E35766 /* DirectlyRegisterViewController.m */,
+				18C2A467212CF4D900E35766 /* DirectlyRegisterViewController.xib */,
+				18C2A46D212D005800E35766 /* ShareView.h */,
+				18C2A46E212D005800E35766 /* ShareView.m */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		18D7E33F20ECA0AC007EE35E = {
@@ -624,6 +710,7 @@
 		18D7E38020ECA237007EE35E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18C2A45E212CEEE400E35766 /* Share */,
 				182CDB0721119BA000F28F4C /* Business */,
 				182CDAF62111504600F28F4C /* Mall */,
 				189817C22105B1A200881C12 /* Activity */,
@@ -631,6 +718,12 @@
 				18D7E48A20ECEDED007EE35E /* ShopRegister */,
 				18D7E47420ECA4FB007EE35E /* HomeViewController.h */,
 				18D7E47520ECA4FB007EE35E /* HomeViewController.m */,
+				180F19FE211BE2870018F1CD /* MyEarningsViewController.h */,
+				180F19FF211BE2870018F1CD /* MyEarningsViewController.m */,
+				18C8F382212D0D8900DDEDBC /* OnlineServicesViewController.h */,
+				18C8F383212D0D8900DDEDBC /* OnlineServicesViewController.m */,
+				18C8F385212D457300DDEDBC /* QuestDetailsViewController.h */,
+				18C8F386212D457300DDEDBC /* QuestDetailsViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -640,6 +733,12 @@
 			children = (
 				18D7E47120ECA4F4007EE35E /* ResultsViewController.h */,
 				18D7E47220ECA4F4007EE35E /* ResultsViewController.m */,
+				18C8F388212D4C6500DDEDBC /* HistoryResultsViewController.h */,
+				18C8F389212D4C6500DDEDBC /* HistoryResultsViewController.m */,
+				18C8F38B212D51EB00DDEDBC /* HistoryInfoView.h */,
+				18C8F38C212D51EB00DDEDBC /* HistoryInfoView.m */,
+				18C8F38E212D523000DDEDBC /* HistioryResultTableViewCell.h */,
+				18C8F38F212D523000DDEDBC /* HistioryResultTableViewCell.m */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -672,6 +771,18 @@
 				18D7E4A120F4F124007EE35E /* OrderTableViewCell.m */,
 				180F19D4211A8BAE0018F1CD /* PersonInfoViewController.h */,
 				180F19D5211A8BAE0018F1CD /* PersonInfoViewController.m */,
+				180F19D7211ABA910018F1CD /* RealNameViewController.h */,
+				180F19D8211ABA910018F1CD /* RealNameViewController.m */,
+				180F19DA211AC1E10018F1CD /* ComplaintsViewController.h */,
+				180F19DB211AC1E10018F1CD /* ComplaintsViewController.m */,
+				180F19DD211AC76A0018F1CD /* AboutUsViewController.h */,
+				180F19DE211AC76A0018F1CD /* AboutUsViewController.m */,
+				180F19E2211ACE2F0018F1CD /* SettingViewController.h */,
+				180F19E3211ACE2F0018F1CD /* SettingViewController.m */,
+				180F19E5211AD23A0018F1CD /* ChangeBankViewController.h */,
+				180F19E6211AD23A0018F1CD /* ChangeBankViewController.m */,
+				180F19E8211AD2450018F1CD /* ChangePasswordViewController.h */,
+				180F19E9211AD2450018F1CD /* ChangePasswordViewController.m */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -999,6 +1110,8 @@
 		18D7E47D20ECABC6007EE35E /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				18C2A46A212CFE4300E35766 /* MJPopTool.h */,
+				18C2A46B212CFE4300E35766 /* MJPopTool.m */,
 				182CDB172111B45600F28F4C /* Rotating.h */,
 				182CDB162111B45500F28F4C /* Rotating.m */,
 				18813BC7210304110040CDF3 /* GetToken.h */,
@@ -1037,6 +1150,12 @@
 				180F19D22119E49C0018F1CD /* EditShopViewController.m */,
 				18813BD42104CB840040CDF3 /* ShopModel.h */,
 				18813BD52104CB840040CDF3 /* ShopModel.m */,
+				180F19F5211BD66F0018F1CD /* ShopMaintainViewController.h */,
+				180F19F6211BD66F0018F1CD /* ShopMaintainViewController.m */,
+				180F19F8211BD6D60018F1CD /* ShopMaintainView.h */,
+				180F19F9211BD6D60018F1CD /* ShopMaintainView.m */,
+				180F19FB211BD73F0018F1CD /* ShopMaintainTableViewCell.h */,
+				180F19FC211BD73F0018F1CD /* ShopMaintainTableViewCell.m */,
 			);
 			path = ShopRegister;
 			sourceTree = "<group>";
@@ -1145,6 +1264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D7E43120ECA338007EE35E /* 接口.rtf in Resources */,
+				18C2A469212CF4D900E35766 /* DirectlyRegisterViewController.xib in Resources */,
 				182CDB1221119C4D00F28F4C /* BusinessTableViewCell.xib in Resources */,
 				18813BD321033C390040CDF3 /* RegisterViewController.xib in Resources */,
 				18D7E35B20ECA0AE007EE35E /* LaunchScreen.storyboard in Resources */,
@@ -1153,6 +1273,7 @@
 				18D7E43A20ECA338007EE35E /* IQKeyboardManager.bundle in Resources */,
 				18D7E48420ECB385007EE35E /* IanScrollViewDefault@2x.png in Resources */,
 				18D7E35820ECA0AE007EE35E /* Assets.xcassets in Resources */,
+				180F19F4211ADD000018F1CD /* ForgetViewController.xib in Resources */,
 				18D7E41F20ECA338007EE35E /* MJRefresh.bundle in Resources */,
 				18D7E35320ECA0AC007EE35E /* Main.storyboard in Resources */,
 				18813BCE2103050B0040CDF3 /* LoginViewController.xib in Resources */,
@@ -1182,8 +1303,11 @@
 			files = (
 				18D7E42020ECA338007EE35E /* UIScrollView+MJExtension.m in Sources */,
 				182CDB0D21119C0100F28F4C /* BusinessDetailsViewController.m in Sources */,
+				18C8F38A212D4C6500DDEDBC /* HistoryResultsViewController.m in Sources */,
 				180F19D6211A8BAE0018F1CD /* PersonInfoViewController.m in Sources */,
 				18D7E49620F335E0007EE35E /* NavHidden.m in Sources */,
+				18C2A46C212CFE4300E35766 /* MJPopTool.m in Sources */,
+				180F19E0211AC76A0018F1CD /* AboutUsViewController.m in Sources */,
 				18D7E41D20ECA338007EE35E /* UIScrollView+MJRefresh.m in Sources */,
 				18D7E46A20ECA4D2007EE35E /* BaseModel.m in Sources */,
 				18605F8520F594C500814B83 /* AddAddressViewController.m in Sources */,
@@ -1198,9 +1322,11 @@
 				189817B8210581E700881C12 /* NoticeListView.m in Sources */,
 				18D7E42A20ECA338007EE35E /* MJRefreshGifHeader.m in Sources */,
 				18605F8420F594C500814B83 /* EditAddressViewController.m in Sources */,
+				180F19EA211AD2450018F1CD /* ChangePasswordViewController.m in Sources */,
 				18D7E44520ECA338007EE35E /* AFURLSessionManager.m in Sources */,
 				18D7E49320F332E6007EE35E /* OrderViewController.m in Sources */,
 				18D7E46D20ECA4DD007EE35E /* MyViewController.m in Sources */,
+				180F19FA211BD6D60018F1CD /* ShopMaintainView.m in Sources */,
 				18D7E44D20ECA338007EE35E /* SDWebImageDecoder.m in Sources */,
 				18D7E35E20ECA0AE007EE35E /* main.m in Sources */,
 				18D7E44420ECA338007EE35E /* AFHTTPSessionManager.m in Sources */,
@@ -1215,6 +1341,7 @@
 				18D7E43920ECA338007EE35E /* IQPreviousNextView.m in Sources */,
 				18D7E45920ECA338007EE35E /* UIButton+WebCache.m in Sources */,
 				18605F8720F594C500814B83 /* AddressTableViewCell.m in Sources */,
+				180F19DC211AC1E10018F1CD /* ComplaintsViewController.m in Sources */,
 				18D7E42720ECA338007EE35E /* MJRefreshAutoNormalFooter.m in Sources */,
 				18813BC8210304110040CDF3 /* GetToken.m in Sources */,
 				18D7E43520ECA338007EE35E /* IQToolbar.m in Sources */,
@@ -1233,13 +1360,17 @@
 				18D7E44820ECA338007EE35E /* AFSecurityPolicy.m in Sources */,
 				189817C12105A4C600881C12 /* NoticeDetailsViewController.m in Sources */,
 				18D7E43F20ECA338007EE35E /* IQUIScrollView+Additions.m in Sources */,
+				180F19FD211BD73F0018F1CD /* ShopMaintainTableViewCell.m in Sources */,
+				180F19F7211BD66F0018F1CD /* ShopMaintainViewController.m in Sources */,
 				180F19D32119E49C0018F1CD /* EditShopViewController.m in Sources */,
 				18D7E45720ECA338007EE35E /* UIImageView+WebCache.m in Sources */,
 				18D7E46820ECA4D2007EE35E /* BaseNaviViewController.m in Sources */,
 				18605F9220F647B200814B83 /* LiveClassTableViewCell.m in Sources */,
 				18D7E44920ECA338007EE35E /* MBProgressHUD.m in Sources */,
 				18D7E47920ECA536007EE35E /* RootViewController.m in Sources */,
+				18C2A45D212C4CEE00E35766 /* ActivityDetailsViewController.m in Sources */,
 				18D7E45020ECA338007EE35E /* UIImage+GIF.m in Sources */,
+				180F19F3211ADD000018F1CD /* ForgetViewController.m in Sources */,
 				18605F8620F594C500814B83 /* AddressViewController.m in Sources */,
 				18D7E44120ECA338007EE35E /* IQUIViewController+Additions.m in Sources */,
 				18D7E49C20F4592D007EE35E /* FirendsRealTableViewCell.m in Sources */,
@@ -1254,18 +1385,26 @@
 				18605F8F20F6475E00814B83 /* LiveClassViewController.m in Sources */,
 				18D7E42F20ECA338007EE35E /* MJRefreshComponent.m in Sources */,
 				18D7E45220ECA338007EE35E /* SDWebImageCompat.m in Sources */,
+				18C2A46F212D005800E35766 /* ShareView.m in Sources */,
 				18D7E42620ECA338007EE35E /* MJRefreshAutoGifFooter.m in Sources */,
 				18813BD62104CB840040CDF3 /* ShopModel.m in Sources */,
 				18D7E42520ECA338007EE35E /* MJRefreshAutoStateFooter.m in Sources */,
 				18D7E43820ECA338007EE35E /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				189817C52105B1C800881C12 /* ActivityListViewController.m in Sources */,
 				18D7E43320ECA338007EE35E /* MDLaunchADView.m in Sources */,
+				180F1A00211BE2870018F1CD /* MyEarningsViewController.m in Sources */,
 				18D7E48D20ECEE52007EE35E /* ShopRegisterViewController.m in Sources */,
+				18C8F387212D457300DDEDBC /* QuestDetailsViewController.m in Sources */,
+				18C2A468212CF4D900E35766 /* DirectlyRegisterViewController.m in Sources */,
 				18D7E42920ECA338007EE35E /* MJRefreshStateHeader.m in Sources */,
 				18D7E43220ECA338007EE35E /* MDHTMLService.m in Sources */,
+				180F19D9211ABA910018F1CD /* RealNameViewController.m in Sources */,
+				180F19E7211AD23A0018F1CD /* ChangeBankViewController.m in Sources */,
 				18D7E44C20ECA338007EE35E /* SDWebImageManager.m in Sources */,
+				180F19E4211ACE2F0018F1CD /* SettingViewController.m in Sources */,
 				189817B52105818800881C12 /* NoticeCenterViewController.m in Sources */,
 				18D7E43E20ECA338007EE35E /* IQUITextFieldView+Additions.m in Sources */,
+				18C2A461212CEEFE00E35766 /* ShareViewController.m in Sources */,
 				18D7E48620ECB385007EE35E /* IanScrollImageView.m in Sources */,
 				18605F8B20F5955D00814B83 /* AddressModel.m in Sources */,
 				182CDB02211153EC00F28F4C /* MallCollectionViewCell.m in Sources */,
@@ -1273,6 +1412,7 @@
 				18D7E43420ECA338007EE35E /* IQTextView.m in Sources */,
 				18D7E45320ECA338007EE35E /* SDWebImagePrefetcher.m in Sources */,
 				18D7E43C20ECA338007EE35E /* IQNSArray+Sort.m in Sources */,
+				18C8F384212D0D8900DDEDBC /* OnlineServicesViewController.m in Sources */,
 				18D7E42C20ECA338007EE35E /* MJRefreshHeader.m in Sources */,
 				18D7E44620ECA338007EE35E /* AFURLRequestSerialization.m in Sources */,
 				18D7E44320ECA338007EE35E /* AFURLResponseSerialization.m in Sources */,
@@ -1290,9 +1430,11 @@
 				18D7E42320ECA338007EE35E /* MJRefreshBackStateFooter.m in Sources */,
 				18D7E44220ECA338007EE35E /* IQKeyboardReturnKeyHandler.m in Sources */,
 				182CDB182111B45600F28F4C /* Rotating.m in Sources */,
+				18C8F38D212D51EB00DDEDBC /* HistoryInfoView.m in Sources */,
 				18D7E49020ECF1AC007EE35E /* ShopRegisterTableViewCell.m in Sources */,
 				18D7E45620ECA338007EE35E /* NSData+ImageContentType.m in Sources */,
 				189817BE210587DD00881C12 /* NoticeModel.m in Sources */,
+				18C8F390212D523000DDEDBC /* HistioryResultTableViewCell.m in Sources */,
 				18D7E45420ECA338007EE35E /* SDImageCache.m in Sources */,
 				18D7E46020ECA43A007EE35E /* UIImage+Category.m in Sources */,
 			);

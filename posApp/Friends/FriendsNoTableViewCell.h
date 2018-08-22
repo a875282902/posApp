@@ -19,5 +19,5 @@
 @interface FriendsNoTableViewCell : UITableViewCell
 
 @property (nonatomic,weak)id<FriendsNoTableViewCellDelegate>delegate;
-
+- (void)bandDataWithDictionary:(NSDictionary *)dic;
 @end

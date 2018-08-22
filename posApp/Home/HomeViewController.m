@@ -12,14 +12,21 @@
 #import "NavHidden.h"
 
 #import "ShopRegisterViewController.h"
-#import "LiveClassViewController.h"
 #import "MallViewController.h"
 #import "BusinessViewController.h"
+
+#import "ShopMaintainViewController.h"
+#import "ShareViewController.h"
 #import "ActivityListViewController.h"
 
+#import "LiveClassViewController.h"
+#import "MyEarningsViewController.h"
+#import "OnlineServicesViewController.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate>
-
+{
+    BOOL isHiddenBar;
+}
 @property (nonatomic,strong)UIScrollView *channelView;
 
 @end
@@ -36,7 +43,10 @@
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:[NavHidden shareInstance].isHidden animated:YES];
+    if (!isHiddenBar) {
+        [self.navigationController setNavigationBarHidden:[NavHidden shareInstance].isHidden animated:YES];
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -54,26 +64,50 @@
 #pragma mark -- UI
 - (void)setUpIanScrollView{
     
-    IanScrollView *scrollView = [[IanScrollView alloc] initWithFrame:CGRectMake(0, KStatusBarHeight, self.view.frame.size.width, MDXFrom6(210))];
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 1; i < 7; i ++) {
-        [array addObject:[NSString stringWithFormat:@"http://childmusic.qiniudn.com/huandeng/%ld.png", (long)i]];
-    }
-    scrollView.slideImagesArray = array;
-    scrollView.ianEcrollViewSelectAction = ^(NSInteger i){
+    NSDictionary *dic = @{@"service":@"Main.Kvlists",@"utoken":UTOKEN};
+    
+    NSMutableArray *iArr = [NSMutableArray array];
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
         
-        NSLog(@"点击了%ld张图片",(long)i);
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                [iArr addObject:dic[@"img"]];
+            }
+            
+            IanScrollView *scrollView = [[IanScrollView alloc] initWithFrame:CGRectMake(0, KStatusBarHeight, self.view.frame.size.width, MDXFrom6(210))];
+    
+            scrollView.slideImagesArray = iArr;
+            scrollView.ianEcrollViewSelectAction = ^(NSInteger i){
+                
+                NSLog(@"点击了%ld张图片",(long)i);
+                
+            };
+            scrollView.ianCurrentIndex = ^(NSInteger index){
+                NSLog(@"测试一下：%ld",(long)index);
+            };
+            scrollView.PageControlPageIndicatorTintColor = [UIColor colorWithRed:255/255.0f green:244/255.0f blue:227/255.0f alpha:0.5];
+            scrollView.pageControlCurrentPageIndicatorTintColor = [UIColor colorWithHexString:@"#fff600"];
+            //轮播时间
+            scrollView.autoTime = [NSNumber numberWithFloat:4.0f];
+            [scrollView startLoading];
+            [weakSelf.view addSubview:scrollView];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
         
-    };
-    scrollView.ianCurrentIndex = ^(NSInteger index){
-        NSLog(@"测试一下：%ld",(long)index);
-    };
-    scrollView.PageControlPageIndicatorTintColor = [UIColor colorWithRed:255/255.0f green:244/255.0f blue:227/255.0f alpha:0.5];
-    scrollView.pageControlCurrentPageIndicatorTintColor = [UIColor colorWithHexString:@"#fff600"];
-    //轮播时间
-    scrollView.autoTime = [NSNumber numberWithFloat:4.0f];
-    [scrollView startLoading];
-    [self.view addSubview:scrollView];
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
 }
 
 #pragma mark -- scrollview
@@ -129,7 +163,7 @@
 }
 
 - (void)tapChannel:(UITapGestureRecognizer *)sender{
-    
+    isHiddenBar = NO;
     switch (sender.view.tag) {
         case 0:
         {
@@ -149,6 +183,18 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 3:
+        {
+            ShopMaintainViewController *vc = [[ShopMaintainViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 4:
+        {
+            ShareViewController *vc = [[ShareViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
             
         case 5:
         {
@@ -156,14 +202,27 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-
-            
         case 6:
         {
             LiveClassViewController *vc = [[LiveClassViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 7:
+        {
+            isHiddenBar = YES;
+
+            MyEarningsViewController *vc = [[MyEarningsViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 8:
+        {
+            OnlineServicesViewController *vc = [[OnlineServicesViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
             
         default:
             break;

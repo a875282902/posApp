@@ -14,7 +14,12 @@
 +(UILabel *)creatLabel:(CGRect)rect font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment title:(NSString *)title{
 
     UILabel *label = [[UILabel alloc] initWithFrame:rect];
-    [label setText:title];
+    if ([title isKindOfClass:[NSString class]]) {
+        [label setText:title];
+    }
+    else{
+        [label setText:@"0"];
+    }
     [label setFont:font];
     [label setTextColor:color];
     [label setNumberOfLines:0];

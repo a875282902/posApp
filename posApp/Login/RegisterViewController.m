@@ -38,8 +38,12 @@
     [super viewWillDisappear:animated];
     
     //消除定时器
+    [self.timer setFireDate:[NSDate distantFuture]];
     [self.timer invalidate];
     self.timer = nil;
+    
+    [self.getCode setTitle:@"获取验证码" forState:(UIControlStateNormal)];
+    [self.getCode addTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
 - (void)viewDidLoad {

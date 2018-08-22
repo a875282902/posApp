@@ -36,7 +36,7 @@
     
     [self.nameLabel setText:model.name];
     [self.phoneLabel setText:model.phone];
-//    [self.locationLabel setText:[NSString stringWithFormat:@"%@%@%@%@",model.province,model.city,model.area,model.detail]];
+    [self.locationLabel setText:[NSString stringWithFormat:@"%@%@",model.pca,model.address]];
     [self.defaultButton setSelected:[model.isdefault integerValue] == 0?YES:NO];
 }
 

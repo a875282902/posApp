@@ -20,4 +20,6 @@
 
 @property (nonatomic,weak)id<FirendsRealTableViewCellDelegate>delegate;
 
+- (void)bandDataWithDictionary:(NSDictionary *)dic;
+
 @end

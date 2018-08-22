@@ -59,7 +59,13 @@
     [self.backView addSubview:self.copBtn];
     
 }
+- (void)bandDataWithDictionary:(NSDictionary *)dic{
+    
 
+    [self.phoneLabel setText:dic[@"phone"]];
+
+    [self.stateLabel setText:dic[@"createtime"]];
+}
 - (void)copeAddress{
     
     [self.delegate contactUserWithCell:self];
