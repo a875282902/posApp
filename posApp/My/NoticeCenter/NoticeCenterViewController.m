@@ -28,7 +28,7 @@
     
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
-    [self setNavigationRightBarButtonWithTitle:@"清空消息" color:TCOLOR];
+//    [self setNavigationRightBarButtonWithTitle:@"清空消息" color:TCOLOR];
     
     self.buttonArr = [NSMutableArray array];
     

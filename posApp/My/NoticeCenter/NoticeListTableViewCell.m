@@ -60,7 +60,7 @@
     
     [self.titleLael setText:dic[@"title"]];
     [self.timeLabel setText:dic[@"createtime"]];
-    [self.descLabel setText:dic[@"content"]];
+    [self.descLabel setText:dic[@"desc"]];
 }
 
 - (void)awakeFromNib {

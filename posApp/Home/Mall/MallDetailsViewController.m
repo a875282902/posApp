@@ -7,6 +7,7 @@
 //
 
 #import "MallDetailsViewController.h"
+#import "PayViewController.h"
 
 @interface MallDetailsViewController ()<UIScrollViewDelegate>
 
@@ -125,6 +126,8 @@
     [btn1 addTarget:self action:@selector(payDeposit) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:btn1];
     
+    
+    
 }
 
 - (void)checkMyOrder{
@@ -134,7 +137,9 @@
 
 - (void)payDeposit{
     
-    
+    PayViewController *vc = [[PayViewController alloc] init];
+    vc.goodsDic = self.goodsInfo;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

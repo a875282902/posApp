@@ -29,6 +29,10 @@
     
     self.dataArr = [NSMutableArray array];
     
+    headerImage = [Tools creatImage:CGRectMake(0, 0, 40, 40) image:@"head"];
+    [headerImage.layer setCornerRadius:20];
+    [headerImage setCenter:CGPointMake(KScreenWidth - 50, 57.5)];
+    
     [self.view addSubview:self.tmpTableView];
     
     [self requestData];
@@ -50,7 +54,7 @@
             weakSelf.dataArr = [NSMutableArray arrayWithObjects:@[data[@"name"],data[@"phone"],[NSString stringWithFormat:@"V%@",data[@"rankid"]],data[@"zhipai"],data[@"xiapai"]],
                                  @[data[@"invitername"],data[@"inviterphone"]],
                                  @[data[@"banknumber"],data[@"bankname"]], nil];
-            [self->headerImage sd_setImageWithURL:[NSURL URLWithString:data[@"headimg"]]];
+            [self->headerImage sd_setImageWithURL:[NSURL URLWithString:data[@"headimg"]] placeholderImage:[UIImage imageNamed:@"head"]];
             [weakSelf.tmpTableView reloadData];
         }
         else{
@@ -141,9 +145,7 @@
         
         [backView addSubview:[Tools creatLabel:CGRectMake(15,30, 200, 55) font:[UIFont systemFontOfSize:16] color:MDRGBA(145, 145, 145, 1) alignment:(NSTextAlignmentLeft) title:@"头像"]];
         
-        headerImage = [Tools creatImage:CGRectMake(0, 0, 40, 40) image:@""];
-        [headerImage.layer setCornerRadius:20];
-        [headerImage setCenter:CGPointMake(KScreenWidth - 50, 57.5)];
+ 
         [backView addSubview:headerImage];
         
         [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 23, 51, 13, 13) image:@"arrow_right"]];
@@ -158,7 +160,7 @@
 
 - (void)changeHeaderImgae{
     
-//    [self chooseImageFromIphone];
+    [self chooseImageFromIphone];
 }
 
 #pragma mark -- 选择照片
@@ -266,8 +268,8 @@
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
             if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-            
-                [self->headerImage setImage:image];
+                
+                [weakSelf changeHeader:responseObject[@"data"][@"url"]];
                 
             }else{
                 [ViewHelps showHUDWithText:@"加载失败，请重新选择图片"];
@@ -285,6 +287,31 @@
         [RequestSever showMsgWithError:error];
     }];
     
+}
+
+- (void)changeHeader:(NSString *)image{
+    
+    NSDictionary *dic = @{@"service":@"Member.Editheadimg",@"utoken":UTOKEN,@"headimg":image};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            [ViewHelps showHUDWithText:@"修改成功"];
+            [self->headerImage sd_setImageWithURL:[NSURL URLWithString:image]];     
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

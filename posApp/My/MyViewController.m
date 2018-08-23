@@ -16,6 +16,7 @@
 #import "AddressViewController.h"
 
 #import "RealNameViewController.h"
+#import "QRCodeViewController.h"
 #import "NoticeCenterViewController.h"
 
 #import "ComplaintsViewController.h"
@@ -72,11 +73,10 @@ static NSString * const cellID = @"myViewCell";
         
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
-        
-            [weakSelf setUpHeaderUI:responseObject[@"data"]];
             
             weakSelf.isReal = [responseObject[@"data"][@"status"] integerValue]==1?NO:YES;
-            
+            [weakSelf setUpHeaderUI:responseObject[@"data"]];
+            [weakSelf.tmpTableView reloadData];
             [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"data"][@"name"] forKey:@"name"];
         }
         else{
@@ -107,14 +107,14 @@ static NSString * const cellID = @"myViewCell";
     
     [_headerView addSubview:[Tools creatImage:CGRectMake(0, 0, KScreenWidth, MDXFrom6(123)) image:@"profile_bg"]];
     
-    UIImageView *header = [Tools creatImage:CGRectMake(0, 0, 60, 60) image:@""];
-    [header sd_setImageWithURL:[NSURL URLWithString:dic[@"headimg"]]];
+    UIImageView *header = [Tools creatImage:CGRectMake(0, 0, 60, 60) image:@"head"];
+    [header sd_setImageWithURL:[NSURL URLWithString:dic[@"headimg"]] placeholderImage:[UIImage imageNamed:@"head"]];
     [header.layer setCornerRadius:30];
     [header addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonInfo)]];
     [header setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(100))];
     [_headerView addSubview:header];
     
-    [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(140), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:TCOLOR alignment:(NSTextAlignmentCenter) title:dic[@"name"]]];
+    [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(140), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:TCOLOR alignment:(NSTextAlignmentCenter) title:self.isReal?dic[@"name"]:@"未实名"]];
     
     [_headerView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(170), KScreenWidth, 20) font:[UIFont systemFontOfSize:17] color:GCOLOR alignment:(NSTextAlignmentCenter) title:[NSString stringWithFormat:@"登录账号：%@",dic[@"phone"]]]];
 }
@@ -237,8 +237,16 @@ static NSString * const cellID = @"myViewCell";
                 RealNameViewController *vc = [[RealNameViewController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
             }
+            else{
+                [ViewHelps showHUDWithText:@"您已实名认证"];
+            }
             
         }
+        if (indexPath.row == 1) {
+            QRCodeViewController *vc = [[QRCodeViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
         if (indexPath.row == 2) {
             NoticeCenterViewController *vc = [[NoticeCenterViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

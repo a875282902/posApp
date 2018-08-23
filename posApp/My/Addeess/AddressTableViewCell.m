@@ -19,7 +19,6 @@
 }
 - (IBAction)setDefault:(UIButton *)sender {
     
-    
     [self.delegate setDefaultTableViewWithCell:self];
     
 }
@@ -37,7 +36,7 @@
     [self.nameLabel setText:model.name];
     [self.phoneLabel setText:model.phone];
     [self.locationLabel setText:[NSString stringWithFormat:@"%@%@",model.pca,model.address]];
-    [self.defaultButton setSelected:[model.isdefault integerValue] == 0?YES:NO];
+    [self.defaultButton setSelected:[model.isdefault integerValue] == 1?YES:NO];
 }
 
 - (void)awakeFromNib {

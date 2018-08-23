@@ -12,6 +12,7 @@
 #import "BaseNaviViewController.h"
 
 #import "Rotating.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
 
@@ -51,6 +52,46 @@
     }else {
         return UIInterfaceOrientationMaskPortrait;
     }
+}
+
+// 这个方法是用于从微信返回第三方App
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"ZFB_PaySuccess" object:nil userInfo:resultDic];
+        }];
+        
+        return YES;
+    }
+    
+    return YES;
+}
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"ZFB_PaySuccess" object:nil userInfo:resultDic];
+        }];
+        return YES;
+    }
+    
+    return YES;
 }
 
 

@@ -107,8 +107,15 @@ static AddressTableViewCell * defaultCell;
     
     
     if (indexPath.row < self.dataArr.count) {
+        
+        AddressModel *model = self.dataArr[indexPath.row];
+        
         [cell setDelegate:self];
-        [cell bandDataWith:self.dataArr[indexPath.row]];
+        [cell bandDataWith:model];
+        if ([model.isdefault integerValue] == 1) {
+            defaultCell = cell;
+        }
+        
     }
     
     

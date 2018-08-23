@@ -20,5 +20,7 @@
 
 @property (nonatomic,weak)id<OrderTableViewCellDelegate>delegate;
 
+- (void)bandDataWithDictionary:(NSDictionary *)dic;
+
 
 @end

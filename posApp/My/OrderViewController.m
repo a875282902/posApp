@@ -8,10 +8,12 @@
 
 #import "OrderViewController.h"
 #import "OrderTableViewCell.h"
+#import "OrderPayViewController.h"
 
 @interface OrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView  * tmpTableView;
+@property (nonatomic,strong) NSMutableArray  * dataArr;
 
 @end
 
@@ -21,12 +23,56 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    
+    self.dataArr = [NSMutableArray array];
     [self baseForDefaultLeftNavButton];
     [self setTitle:@"我的订单"];
     
     [self.view addSubview:self.tmpTableView];
+    [self load];
+    [self pullDownRefresh];
 }
+
+#pragma mark -- refresh
+- (void)load{
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    
+        [weakSelf.dataArr removeAllObjects];
+    
+        [weakSelf pullDownRefresh];
+    }];
+    
+    
+}
+//下拉刷新
+- (void)pullDownRefresh{
+ 
+    NSDictionary *dic = @{@"service":@"Order.Orderlists",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            weakSelf.dataArr = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [weakSelf.tmpTableView.header endRefreshing];
+            [weakSelf.tmpTableView reloadData];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
+
 
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
@@ -46,7 +92,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -55,8 +101,13 @@
     if (!cell) {
         cell = [[OrderTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"OrderTableViewCell"];
     }
-    [cell setDelegate:self];
     
+    if (indexPath.row <self.dataArr.count) {
+        [cell setDelegate:self];
+        
+        [cell bandDataWithDictionary:self.dataArr[indexPath.row]];
+    }
+ 
     return cell;
 }
 
@@ -68,8 +119,9 @@
 -(void)payWithCell:(OrderTableViewCell *)cell{
     
     NSIndexPath *indexPath = [self.tmpTableView indexPathForCell:cell];
-    
-    NSLog(@"%ld",indexPath.row);
+    OrderPayViewController *vc = [[OrderPayViewController alloc] init];
+    vc.goodsDic =self.dataArr[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

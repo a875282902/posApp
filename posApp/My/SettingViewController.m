@@ -32,7 +32,7 @@
 
 - (void)setUpUI{
     
-    NSArray *tArr = @[@"更多结算卡",@"修改密码"];
+    NSArray *tArr = @[@"更换结算卡",@"修改密码"];
     
     for (NSInteger i = 0 ; i < 2 ; i ++) {
         

@@ -10,6 +10,7 @@
 #import "IanScrollView.h"
 
 #import "NavHidden.h"
+#import "MJPopTool.h"
 
 #import "ShopRegisterViewController.h"
 #import "MallViewController.h"
@@ -23,11 +24,16 @@
 #import "MyEarningsViewController.h"
 #import "OnlineServicesViewController.h"
 
+#import "RealNameViewController.h"
+
 @interface HomeViewController ()<UIScrollViewDelegate>
 {
     BOOL isHiddenBar;
+    BOOL isOpne;
 }
 @property (nonatomic,strong)UIScrollView *channelView;
+
+@property (nonatomic,strong)UIView *tishi;
 
 @end
 
@@ -38,6 +44,8 @@
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self getMemberinfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -59,8 +67,35 @@
     [self.view addSubview:self.channelView];
     
     [self setUpChannelView];
+    
+  
 }
 
+- (void)getMemberinfo{
+    
+    NSDictionary *dic = @{@"service":@"Member.Memberinfo",@"utoken":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            self->isOpne = [responseObject[@"data"][@"status"] integerValue]==1?NO:YES;
+
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
 #pragma mark -- UI
 - (void)setUpIanScrollView{
     
@@ -162,7 +197,26 @@
     [self.channelView setContentSize:CGSizeMake(KScreenWidth , h*3)];
 }
 
+
+-(UIView *)tishi{
+    if (!_tishi) {
+        _tishi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth - 40, 80)];
+        [_tishi setBackgroundColor:[UIColor redColor]];
+    }
+    return _tishi;
+}
+
+
 - (void)tapChannel:(UITapGestureRecognizer *)sender{
+    
+   
+
+    
+    if (!isOpne) {
+        [self creatAlertViewControllerWithMessage];
+    }
+    else{
+    
     isHiddenBar = NO;
     switch (sender.view.tag) {
         case 0:
@@ -227,6 +281,28 @@
         default:
             break;
     }
+        
+    }
+    
+}
+
+
+- (void)creatAlertViewControllerWithMessage{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你还未认证，是否需要认证" preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"去认证" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+        RealNameViewController *vc = [[RealNameViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"暂不认证" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

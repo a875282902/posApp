@@ -33,6 +33,8 @@
         
         [self load];
         
+        [self pullDownRefresh];
+        
     }
     return self;
 }

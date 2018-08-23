@@ -8,6 +8,7 @@
 
 #import "MyEarningsViewController.h"
 #import "NavHidden.h"
+#import "AllEarningViewController.h"
 
 @interface MyEarningsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,6 +25,7 @@
     
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -217,7 +219,8 @@
 
 - (void)checkHistoryEarning{
     
-    
+    AllEarningViewController *vc = [[AllEarningViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

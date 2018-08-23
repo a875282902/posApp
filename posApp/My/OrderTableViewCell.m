@@ -43,7 +43,7 @@
     [self.goodsCover setBackgroundColor:GCOLOR];
     [self addSubview:self.goodsCover];
     
-    self.nameLabel = [Tools creatLabel:CGRectMake(80, 52.5, KScreenWidth - 165, 40) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称"];
+    self.nameLabel = [Tools creatLabel:CGRectMake(80, 52.5, KScreenWidth - 165, 40) font:[UIFont systemFontOfSize:15] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@""];
     [self addSubview:self.nameLabel];
     
     self.priceLabel = [Tools creatLabel:CGRectMake(80, 97.5, KScreenWidth - 165, 15) font:[UIFont systemFontOfSize:15] color:RCOLOR alignment:(NSTextAlignmentLeft) title:@"price"];
@@ -56,8 +56,27 @@
     [self.payBtn addTarget:self action:@selector(pay) forControlEvents:(UIControlEventTouchUpInside)];
     [self addSubview:self.payBtn];
     
+    [self.payBtn setHidden:YES];
+    
     [self addSubview:[Tools setLineView:CGRectMake(0, 125, KScreenWidth, 10)]];
     
+}
+
+- (void)bandDataWithDictionary:(NSDictionary *)dic{
+
+
+    [self.numLabel setText:[NSString stringWithFormat:@"订单编号:%@",dic[@"ordernum"]]];
+    [self.nameLabel setText:dic[@"name"]];
+    
+    [self.payBtn setHidden:[dic[@"status"] integerValue]==1?NO:YES];
+    
+//    [self.stateLabel setText:[dic[@"status"] integerValue]==1?@"未支付":@"已支付"];
+    
+    
+    [self.goodsCover sd_setImageWithURL:[NSURL URLWithString:dic[@"thumb"]]];
+    
+    [self.priceLabel setText:dic[@"price"]];
+
 }
 
 - (void)pay{

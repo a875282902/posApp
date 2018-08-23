@@ -36,6 +36,8 @@
     [self setTitle:@"消息内容"];
     
     [self requestData];
+    
+    [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
 }
 
 - (void)requestData{
@@ -72,30 +74,30 @@
 - (void)setUpView:(NSDictionary *)dic{
     
     if (!self.tmpScrollView) {
-        self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight - 65)];
+        self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 65)];
         [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, KScreenWidth*2)];
         [self.view addSubview:self.tmpScrollView];
     }
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MDXFrom6(15), MDXFrom6(20), KScreenWidth - MDXFrom6(30), MDXFrom6(50))];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, KScreenWidth - 20, 40)];
     [titleLabel setText:dic[@"title"]];
     [titleLabel setNumberOfLines:0];
-    [titleLabel setFont:[UIFont systemFontOfSize:MDXFrom6(23)]];
+    [titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.tmpScrollView addSubview:titleLabel];
     
-    UIImageView *time = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(20), MDXFrom6(20))];
-    [time setImage:[UIImage imageNamed:@"time"]];
-    [time setCenter:CGPointMake(MDXFrom6(30), MDXFrom6(100))];
-    [self.tmpScrollView addSubview:time];
+//    UIImageView *time = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(20), MDXFrom6(20))];
+//    [time setImage:[UIImage imageNamed:@"time"]];
+//    [time setCenter:CGPointMake(MDXFrom6(30), MDXFrom6(100))];
+//    [self.tmpScrollView addSubview:time];
     
-    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(40), MDXFrom6(90), KScreenWidth -MDXFrom6(10)-MDXFrom6(9)-10, MDXFrom6(20))];
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, KScreenWidth - 20, 15)];
     [timeLabel setText:[self stringToDate:dic[@"createtime"]]];
     [timeLabel setTextColor:[UIColor grayColor]];
     [timeLabel setTextAlignment:(NSTextAlignmentLeft)];
-    [timeLabel setFont:[UIFont systemFontOfSize:MDXFrom6(20)]];
+    [timeLabel setFont:[UIFont systemFontOfSize:12]];
     [self.tmpScrollView addSubview:timeLabel];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, MDXFrom6(129), KScreenWidth, MDXFrom6(1))];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, KScreenWidth, MDXFrom6(1))];
     [lineView setBackgroundColor:MDRGBA(157, 157, 157, 1)];
     [self.tmpScrollView addSubview:lineView];
 }
@@ -149,8 +151,8 @@
         // we are here because the contentSize of the WebView's scrollview changed.
         
         UIScrollView *scrollView = self.tmpWeView.scrollView;
-        [self.tmpWeView setFrame:CGRectMake(0,MDXFrom6(130), KScreenWidth, scrollView.contentSize.height)];
-        [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, MDXFrom6(130)+scrollView.contentSize.height)];
+        [self.tmpWeView setFrame:CGRectMake(0,60, KScreenWidth, scrollView.contentSize.height)];
+        [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, 60+scrollView.contentSize.height)];
         [self.tmpScrollView addSubview:self.tmpWeView];
         
     }
