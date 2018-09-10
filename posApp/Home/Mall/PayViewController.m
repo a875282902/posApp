@@ -9,6 +9,7 @@
 #import "PayViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "AddressListViewController.h"
+#import "WXApi.h"
 
 @interface PayViewController ()
 {
@@ -199,7 +200,7 @@
 - (void)pay{
  
     if (_index == 0) {
-        
+        [self payInfoWithWinxin];
     }
     else{
         
@@ -291,7 +292,56 @@
     
     
 }
-
+#pragma mark --- 微信
+- (void)payInfoWithWinxin{
+    
+    NSDictionary *dic = @{@"service":@"Order.Orderpay",
+                          @"utoken":UTOKEN,
+                          @"addressid":_address[@"id"],
+                          @"paypath":@"1",
+                          @"goodid":self.goodsDic[@"id"]};
+    
+    [HttpRequest POST:KURL parameters:dic success:^(id responseObject) {
+        
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            PayReq *request = [[PayReq alloc] init];
+            request.openID = responseObject[@"data"][@"appid"];
+            request.partnerId = responseObject[@"data"][@"partnerid"];
+            request.prepayId= responseObject[@"data"][@"prepayid"];
+            request.package = responseObject[@"data"][@"package"];
+            request.nonceStr= responseObject[@"data"][@"noncestr"];
+            
+            UInt32 timeStamp = [responseObject[@"data"][@"timestamp"] intValue];
+            request.timeStamp = timeStamp ;
+            
+            //             签名加密
+            NSString *newsign = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)responseObject[@"data"][@"sign"], NULL, (CFStringRef)@"!*'();:@&=+ $,./?%#[]", kCFStringEncodingUTF8));
+            request.sign=newsign;
+            
+            // 调用微信
+            [WXApi sendReq:request];
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }
+        
+        else{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [ViewHelps showHUDWithText:@"充值失败"];
+    }];
+    
+    
+}
+- (void)weixinPaySuceess{
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [ViewHelps showHUDWithText:@"支付成功"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

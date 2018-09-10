@@ -83,7 +83,9 @@
         if ([responseObject[@"ret"] integerValue]==200) {
             
             self->isOpne = [responseObject[@"data"][@"status"] integerValue]==1?NO:YES;
-
+            [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"data"][@"name"] forKey:@"name"];
+            [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"data"][@"phone"] forKey:@"phone"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else{
             
@@ -159,8 +161,8 @@
 
 - (void)setUpChannelView{
     
-    NSArray * tArr = @[@"商户登记",@"机具申请",@"业务辅助",
-                       @"商户维护",@"我要分享",@"活动专区",
+    NSArray * tArr = @[@"资料登记",@"机具领取",@"辅助资料",
+                       @"客户维护",@"我要分享",@"活动专区",
                        @"视频课程",@"我的收益",@"在线客服"];
     
     NSArray * dtArr = @[@"点击记录，方便未来",@"手指一点，货品到家",@"兵马未动，物流先行",
@@ -170,7 +172,7 @@
     
     
     CGFloat w = KScreenWidth/3.0;
-    CGFloat h = MDXFrom6(110);
+    CGFloat h = MDXFrom6(80);
     CGFloat x = (KScreenWidth/3 - MDXFrom6(30))/2.0;
     
     for (NSInteger i = 0 ; i < 9 ; i ++) {
@@ -185,7 +187,7 @@
         
         [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(55), w, 14) font:[UIFont systemFontOfSize:14] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:tArr[i]]];
         
-        [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(62)+14, w, 10) font:[UIFont systemFontOfSize:10] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentCenter) title:dtArr[i]]];
+//        [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(62)+14, w, 10) font:[UIFont systemFontOfSize:10] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentCenter) title:dtArr[i]]];
     }
     
     [self.channelView addSubview:[Tools setLineView:CGRectMake(w, 0, 1, h*3)]];
@@ -208,10 +210,7 @@
 
 
 - (void)tapChannel:(UITapGestureRecognizer *)sender{
-    
-   
 
-    
     if (!isOpne) {
         [self creatAlertViewControllerWithMessage];
     }

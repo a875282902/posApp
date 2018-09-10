@@ -8,6 +8,7 @@
 
 #import "QuestDetailsViewController.h"
 
+
 @interface QuestDetailsViewController ()<UIWebViewDelegate>
 
 @property (nonatomic,strong) UIWebView *web;

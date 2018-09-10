@@ -28,7 +28,7 @@ static NSString * const cellID = @"ShopRegisterTableViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationItem setTitle:@"商户登记"];
+    [self.navigationItem setTitle:@"资料登记"];
     [self baseForDefaultLeftNavButton];
     
     self.dataArr = [NSMutableArray array];

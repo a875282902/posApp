@@ -9,6 +9,8 @@
 #import "MallDetailsViewController.h"
 #import "PayViewController.h"
 
+#import "OrderViewController.h"
+
 @interface MallDetailsViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *tmpScrollView;
@@ -132,7 +134,8 @@
 
 - (void)checkMyOrder{
     
-    
+    OrderViewController *vc = [[OrderViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)payDeposit{

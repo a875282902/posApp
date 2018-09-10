@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "RootViewController.h"
+#import "JPUSHService.h"
 
 @interface LoginViewController ()
 {
@@ -82,6 +83,10 @@
         if ([responseObject[@"ret"] integerValue]==200) {
             [ViewHelps showHUDWithText:@"登录成功"];
             [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"data"][@"utoken"] forKey:@"utoken"];
+            
+            [JPUSHService setAlias:responseObject[@"data"][@"utoken"] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                
+            } seq:1];
             
             RootViewController *vc = [[RootViewController alloc] init];
             [weakSelf presentViewController:vc animated:YES completion:nil];

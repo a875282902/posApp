@@ -53,6 +53,13 @@
 
 #define KURL @"http://api.ruilianmeng.lyqianniu.com/"
 
+
+//参数
+#define JGAppKey @"5333054bf35d44dcc49a6f4d"
+
+#define WXAPPID @"wx43e01eb2a33e54f9"
+#define WXSECRET @"7cb9a0e671a3a55e81a989260aad0767"
+
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"utoken"]
 
 #ifdef __OBJC__

@@ -32,6 +32,13 @@
 		182CDB1221119C4D00F28F4C /* BusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDB1021119C4D00F28F4C /* BusinessTableViewCell.xib */; };
 		182CDB1521119E0800F28F4C /* BusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB1421119E0800F28F4C /* BusinessModel.m */; };
 		182CDB182111B45600F28F4C /* Rotating.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB162111B45500F28F4C /* Rotating.m */; };
+		1845C6012142489200EC84F3 /* jpush-ios-3.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845C5FF2142489100EC84F3 /* jpush-ios-3.1.0.a */; };
+		1845C6022142489200EC84F3 /* jcore-ios-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845C6002142489100EC84F3 /* jcore-ios-1.2.1.a */; };
+		1845C604214248D500EC84F3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845C603214248D500EC84F3 /* CoreFoundation.framework */; };
+		1845C6062142490B00EC84F3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845C6052142490B00EC84F3 /* UserNotifications.framework */; };
+		1845C6082142491300EC84F3 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845C6072142491300EC84F3 /* libresolv.tbd */; };
+		1845C6122146079200EC84F3 /* TixianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C6112146079200EC84F3 /* TixianViewController.m */; };
+		1845C6152146521200EC84F3 /* TixianListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C6142146521200EC84F3 /* TixianListViewController.m */; };
 		18605F8320F594C500814B83 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18605F7820F594C500814B83 /* AddressTableViewCell.xib */; };
 		18605F8420F594C500814B83 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F7A20F594C500814B83 /* EditAddressViewController.m */; };
 		18605F8520F594C500814B83 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18605F7C20F594C500814B83 /* AddAddressViewController.m */; };
@@ -92,6 +99,10 @@
 		18C8F41C212E5F2500DDEDBC /* AllEarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F41B212E5F2500DDEDBC /* AllEarningViewController.m */; };
 		18C8F41F212E667900DDEDBC /* OrderPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F41E212E667900DDEDBC /* OrderPayViewController.m */; };
 		18C8F422212E67F700DDEDBC /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F421212E67F600DDEDBC /* QRCodeViewController.m */; };
+		18C8F4352133F3C600DDEDBC /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18C8F4322133F3C600DDEDBC /* README.txt */; };
+		18C8F4362133F3C600DDEDBC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8F4342133F3C600DDEDBC /* libWeChatSDK.a */; };
+		18C8F4382133F45500DDEDBC /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8F4372133F45400DDEDBC /* libsqlite3.0.tbd */; };
+		18C8F43A2133F46500DDEDBC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8F4392133F46400DDEDBC /* Security.framework */; };
 		18D7E34D20ECA0AC007EE35E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E34C20ECA0AC007EE35E /* AppDelegate.m */; };
 		18D7E35320ECA0AC007EE35E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E35120ECA0AC007EE35E /* Main.storyboard */; };
 		18D7E35620ECA0AC007EE35E /* posApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E35420ECA0AC007EE35E /* posApp.xcdatamodeld */; };
@@ -253,6 +264,17 @@
 		182CDB1421119E0800F28F4C /* BusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessModel.m; sourceTree = "<group>"; };
 		182CDB162111B45500F28F4C /* Rotating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rotating.m; sourceTree = "<group>"; };
 		182CDB172111B45600F28F4C /* Rotating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rotating.h; sourceTree = "<group>"; };
+		1845C5FE2142489100EC84F3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		1845C5FF2142489100EC84F3 /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
+		1845C6002142489100EC84F3 /* jcore-ios-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.1.a"; sourceTree = "<group>"; };
+		1845C603214248D500EC84F3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1845C6052142490B00EC84F3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		1845C6072142491300EC84F3 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		1845C6092142494400EC84F3 /* posApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = posApp.entitlements; sourceTree = "<group>"; };
+		1845C6102146079200EC84F3 /* TixianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TixianViewController.h; sourceTree = "<group>"; };
+		1845C6112146079200EC84F3 /* TixianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TixianViewController.m; sourceTree = "<group>"; };
+		1845C6132146521200EC84F3 /* TixianListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TixianListViewController.h; sourceTree = "<group>"; };
+		1845C6142146521200EC84F3 /* TixianListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TixianListViewController.m; sourceTree = "<group>"; };
 		18605F7820F594C500814B83 /* AddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
 		18605F7920F594C500814B83 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
 		18605F7A20F594C500814B83 /* EditAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
@@ -430,6 +452,13 @@
 		18C8F41E212E667900DDEDBC /* OrderPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPayViewController.m; sourceTree = "<group>"; };
 		18C8F420212E67F600DDEDBC /* QRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		18C8F421212E67F600DDEDBC /* QRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		18C8F4302133F3C600DDEDBC /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		18C8F4312133F3C600DDEDBC /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		18C8F4322133F3C600DDEDBC /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		18C8F4332133F3C600DDEDBC /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		18C8F4342133F3C600DDEDBC /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		18C8F4372133F45400DDEDBC /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		18C8F4392133F46400DDEDBC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		18D7E34820ECA0AC007EE35E /* posApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = posApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D7E34B20ECA0AC007EE35E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D7E34C20ECA0AC007EE35E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -626,20 +655,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C8F410212D60EC00DDEDBC /* CoreMotion.framework in Frameworks */,
-				18C8F40E212D60E500DDEDBC /* CFNetwork.framework in Frameworks */,
-				18C8F40C212D60DF00DDEDBC /* Foundation.framework in Frameworks */,
+				1845C6082142491300EC84F3 /* libresolv.tbd in Frameworks */,
+				1845C6062142490B00EC84F3 /* UserNotifications.framework in Frameworks */,
+				18C8F3FE212D609B00DDEDBC /* libz.tbd in Frameworks */,
+				18C8F43A2133F46500DDEDBC /* Security.framework in Frameworks */,
 				18C8F40A212D60D900DDEDBC /* UIKit.framework in Frameworks */,
+				18C8F40C212D60DF00DDEDBC /* Foundation.framework in Frameworks */,
 				18C8F408212D60D500DDEDBC /* CoreGraphics.framework in Frameworks */,
+				18C8F400212D60A800DDEDBC /* SystemConfiguration.framework in Frameworks */,
+				18C8F402212D60B100DDEDBC /* CoreTelephony.framework in Frameworks */,
+				1845C604214248D500EC84F3 /* CoreFoundation.framework in Frameworks */,
+				18C8F40E212D60E500DDEDBC /* CFNetwork.framework in Frameworks */,
+				1845C6012142489200EC84F3 /* jpush-ios-3.1.0.a in Frameworks */,
+				1845C6022142489200EC84F3 /* jcore-ios-1.2.1.a in Frameworks */,
+				18C8F3FC212D607600DDEDBC /* libc++.tbd in Frameworks */,
+				18C8F4382133F45500DDEDBC /* libsqlite3.0.tbd in Frameworks */,
+				18C8F410212D60EC00DDEDBC /* CoreMotion.framework in Frameworks */,
 				18C8F406212D60CF00DDEDBC /* CoreText.framework in Frameworks */,
 				18C8F404212D60B800DDEDBC /* QuartzCore.framework in Frameworks */,
-				18C8F402212D60B100DDEDBC /* CoreTelephony.framework in Frameworks */,
-				18C8F400212D60A800DDEDBC /* SystemConfiguration.framework in Frameworks */,
-				18C8F3FE212D609B00DDEDBC /* libz.tbd in Frameworks */,
-				18C8F3FC212D607600DDEDBC /* libc++.tbd in Frameworks */,
 				18C8F3F8212D5FAC00DDEDBC /* libssl.a in Frameworks */,
 				18C8F3F1212D5FAB00DDEDBC /* libcrypto.a in Frameworks */,
 				18C8F3F9212D5FAC00DDEDBC /* AlipaySDK.framework in Frameworks */,
+				18C8F4362133F3C600DDEDBC /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +749,16 @@
 				182CDB1421119E0800F28F4C /* BusinessModel.m */,
 			);
 			path = Business;
+			sourceTree = "<group>";
+		};
+		1845C5FD2142489100EC84F3 /* JGPush */ = {
+			isa = PBXGroup;
+			children = (
+				1845C5FE2142489100EC84F3 /* JPUSHService.h */,
+				1845C5FF2142489100EC84F3 /* jpush-ios-3.1.0.a */,
+				1845C6002142489100EC84F3 /* jcore-ios-1.2.1.a */,
+			);
+			path = JGPush;
 			sourceTree = "<group>";
 		};
 		18605F7720F5947D00814B83 /* Addeess */ = {
@@ -921,6 +968,11 @@
 		18C8F3FA212D607600DDEDBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1845C6072142491300EC84F3 /* libresolv.tbd */,
+				1845C6052142490B00EC84F3 /* UserNotifications.framework */,
+				1845C603214248D500EC84F3 /* CoreFoundation.framework */,
+				18C8F4392133F46400DDEDBC /* Security.framework */,
+				18C8F4372133F45400DDEDBC /* libsqlite3.0.tbd */,
 				18C8F40F212D60EC00DDEDBC /* CoreMotion.framework */,
 				18C8F40D212D60E500DDEDBC /* CFNetwork.framework */,
 				18C8F40B212D60DE00DDEDBC /* Foundation.framework */,
@@ -934,6 +986,18 @@
 				18C8F3FB212D607600DDEDBC /* libc++.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18C8F42F2133F3C600DDEDBC /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				18C8F4302133F3C600DDEDBC /* WXApi.h */,
+				18C8F4312133F3C600DDEDBC /* WXApiObject.h */,
+				18C8F4322133F3C600DDEDBC /* README.txt */,
+				18C8F4332133F3C600DDEDBC /* WechatAuthSDK.h */,
+				18C8F4342133F3C600DDEDBC /* libWeChatSDK.a */,
+			);
+			path = Wechat;
 			sourceTree = "<group>";
 		};
 		18D7E33F20ECA0AC007EE35E = {
@@ -960,6 +1024,9 @@
 		18D7E34A20ECA0AC007EE35E /* posApp */ = {
 			isa = PBXGroup;
 			children = (
+				1845C6092142494400EC84F3 /* posApp.entitlements */,
+				1845C5FD2142489100EC84F3 /* JGPush */,
+				18C8F42F2133F3C600DDEDBC /* Wechat */,
 				18C8F391212D5FAB00DDEDBC /* Alipay */,
 				18813BC9210304E20040CDF3 /* Login */,
 				18D7E47D20ECABC6007EE35E /* Public */,
@@ -1017,6 +1084,10 @@
 				18D7E47520ECA4FB007EE35E /* HomeViewController.m */,
 				180F19FE211BE2870018F1CD /* MyEarningsViewController.h */,
 				180F19FF211BE2870018F1CD /* MyEarningsViewController.m */,
+				1845C6102146079200EC84F3 /* TixianViewController.h */,
+				1845C6112146079200EC84F3 /* TixianViewController.m */,
+				1845C6132146521200EC84F3 /* TixianListViewController.h */,
+				1845C6142146521200EC84F3 /* TixianListViewController.m */,
 				18C8F41A212E5F2500DDEDBC /* AllEarningViewController.h */,
 				18C8F41B212E5F2500DDEDBC /* AllEarningViewController.m */,
 				18C8F382212D0D8900DDEDBC /* OnlineServicesViewController.h */,
@@ -1530,6 +1601,14 @@
 				TargetAttributes = {
 					18D7E34720ECA0AC007EE35E = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					18D7E36220ECA0AE007EE35E = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1572,6 +1651,7 @@
 				182CDB1221119C4D00F28F4C /* BusinessTableViewCell.xib in Resources */,
 				18813BD321033C390040CDF3 /* RegisterViewController.xib in Resources */,
 				18D7E35B20ECA0AE007EE35E /* LaunchScreen.storyboard in Resources */,
+				18C8F4352133F3C600DDEDBC /* README.txt in Resources */,
 				18605F8320F594C500814B83 /* AddressTableViewCell.xib in Resources */,
 				182CDB03211153EC00F28F4C /* MallCollectionViewCell.xib in Resources */,
 				18D7E43A20ECA338007EE35E /* IQKeyboardManager.bundle in Resources */,
@@ -1674,6 +1754,7 @@
 				180F19F7211BD66F0018F1CD /* ShopMaintainViewController.m in Sources */,
 				180F19D32119E49C0018F1CD /* EditShopViewController.m in Sources */,
 				18D7E45720ECA338007EE35E /* UIImageView+WebCache.m in Sources */,
+				1845C6152146521200EC84F3 /* TixianListViewController.m in Sources */,
 				18D7E46820ECA4D2007EE35E /* BaseNaviViewController.m in Sources */,
 				18605F9220F647B200814B83 /* LiveClassTableViewCell.m in Sources */,
 				18D7E44920ECA338007EE35E /* MBProgressHUD.m in Sources */,
@@ -1750,6 +1831,7 @@
 				18D7E49020ECF1AC007EE35E /* ShopRegisterTableViewCell.m in Sources */,
 				18D7E45620ECA338007EE35E /* NSData+ImageContentType.m in Sources */,
 				189817BE210587DD00881C12 /* NoticeModel.m in Sources */,
+				1845C6122146079200EC84F3 /* TixianViewController.m in Sources */,
 				18C8F390212D523000DDEDBC /* HistioryResultTableViewCell.m in Sources */,
 				18D7E45420ECA338007EE35E /* SDImageCache.m in Sources */,
 				18D7E46020ECA43A007EE35E /* UIImage+Category.m in Sources */,
@@ -1921,15 +2003,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = posApp/posApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6J9S23ZQ6P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/posApp/Alipay",
+					"$(PROJECT_DIR)/posApp/Wechat",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/posApp/HeaderPreFix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/posApp/Alipay";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/posApp/Alipay",
+					"$(SRCROOT)/posApp/Wechat",
+				);
 				INFOPLIST_FILE = posApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1939,10 +2026,17 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/posApp/Alipay",
+					"$(PROJECT_DIR)/posApp/Wechat",
+					"$(PROJECT_DIR)/posApp/JGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lsy.posApp;
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.post.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "19064947-9b05-4a61-9d9d-0038f21c2ceb";
+				PROVISIONING_PROFILE_SPECIFIER = pos_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1951,15 +2045,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				CODE_SIGN_ENTITLEMENTS = posApp/posApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6J9S23ZQ6P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/posApp/Alipay",
+					"$(PROJECT_DIR)/posApp/Wechat",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/posApp/HeaderPreFix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/posApp/Alipay";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/posApp/Alipay",
+					"$(SRCROOT)/posApp/Wechat",
+				);
 				INFOPLIST_FILE = posApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1969,10 +2068,17 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/posApp/Alipay",
+					"$(PROJECT_DIR)/posApp/Wechat",
+					"$(PROJECT_DIR)/posApp/JGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lsy.posApp;
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.post.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "9041c032-57e5-45be-87b4-ff6d04c81d48";
+				PROVISIONING_PROFILE_SPECIFIER = pos_dis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

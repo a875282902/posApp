@@ -8,6 +8,7 @@
 
 #import "ShareViewController.h"
 #import "DirectlyRegisterViewController.h"
+#import "QRCodeViewController.h"
 
 @interface ShareViewController ()
 
@@ -47,7 +48,8 @@
 - (void)select:(UITapGestureRecognizer *)sender{
     
     if (sender.view.tag == 0) {
-        
+        QRCodeViewController *vc = [[QRCodeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else{
         

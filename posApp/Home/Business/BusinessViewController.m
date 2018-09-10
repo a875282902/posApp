@@ -29,7 +29,7 @@ static NSString *const size = @"10";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self baseForDefaultLeftNavButton];
-    [self setTitle:@"业务辅助"];
+    [self setTitle:@"辅助资料"];
     self.dataArr = [NSMutableArray array];
     self.page = 1;
     [self.view addSubview:self.tmpTableView];

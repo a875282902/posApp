@@ -59,8 +59,21 @@
 - (void)bandDataWithDic:(NSDictionary *)dic{
     
     [self.titleLael setText:dic[@"title"]];
-    [self.timeLabel setText:dic[@"createtime"]];
+    [self.timeLabel setText:[self stringToDate:dic[@"createtime"]]];
     [self.descLabel setText:dic[@"desc"]];
+}
+//时间戳转时间
+- (NSString *)stringToDate:(NSString *)str{
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"beijing"];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    NSString* dateString = [formatter stringFromDate:date];
+    
+    return dateString;
 }
 
 - (void)awakeFromNib {

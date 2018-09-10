@@ -9,6 +9,7 @@
 #import "MyEarningsViewController.h"
 #import "NavHidden.h"
 #import "AllEarningViewController.h"
+#import "TixianViewController.h"
 
 @interface MyEarningsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -87,6 +88,20 @@
     
     [self.view addSubview:self.navView];
     
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth - 80, height, 60, 20) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"点击提现" image:@""];
+    [btn.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [btn.layer setBorderWidth:1];
+    [btn.layer setCornerRadius:10];
+    [btn setClipsToBounds:YES];
+    [btn addTarget:self action:@selector(tiixan:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:btn];
+    
+}
+
+- (void)tiixan:(UIButton *)sender{
+    TixianViewController * VC = [[TixianViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (UIView *)navView{
@@ -125,15 +140,15 @@
     
     CGFloat height = 60;
     
-    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(157, 170, 192, 1) alignment:(NSTextAlignmentLeft) title:@"交易额(元)"]];
+    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(157, 170, 192, 1) alignment:(NSTextAlignmentCenter) title:@"交易额(元)"]];
     
-    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15 + ( KScreenWidth - 30)/2, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(157, 170, 192, 1) alignment:(NSTextAlignmentLeft) title:@"收益(元)"]];
+    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15 + ( KScreenWidth - 30)/2, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(157, 170, 192, 1) alignment:(NSTextAlignmentCenter) title:@"收益(元)"]];
     
     height += 25;
     
-    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15, height,( KScreenWidth - 30)/2, 15) font:[UIFont systemFontOfSize:15] color:MDRGBA(106, 120, 139, 1) alignment:(NSTextAlignmentLeft) title:dic[@"jiaoyie"]]];
+    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15, height,( KScreenWidth - 30)/2, 15) font:[UIFont systemFontOfSize:15] color:MDRGBA(106, 120, 139, 1) alignment:(NSTextAlignmentCenter) title:dic[@"jiaoyie"]]];
     
-    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15 + ( KScreenWidth - 30)/2, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(225, 190, 36, 1) alignment:(NSTextAlignmentLeft) title:dic[@"shouyi"]]];
+    [self.headerView addSubview:[Tools creatLabel:CGRectMake(15 + ( KScreenWidth - 30)/2, height,( KScreenWidth - 30)/2, 12) font:[UIFont systemFontOfSize:12] color:MDRGBA(225, 190, 36, 1) alignment:(NSTextAlignmentCenter) title:dic[@"shouyi"]]];
     
     height += 30;
     

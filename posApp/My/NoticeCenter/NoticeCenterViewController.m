@@ -37,6 +37,12 @@
     [self createChannelView];
 }
 
+- (void)leftButtonTouchUpInside:(id)sender{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark -- scrollview
 -(UIScrollView *)listScrollView{
     

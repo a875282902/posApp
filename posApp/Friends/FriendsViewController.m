@@ -30,21 +30,14 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
     
-    [super viewWillDisappear:animated];
-    
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
-    [self.navigationController setNavigationBarHidden:[NavHidden shareInstance].isHidden animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setTitle:@"盟友"];
     
     [self setUpChannelButton];
     
@@ -55,7 +48,7 @@
     
     for (NSInteger i = 0 ; i < 2 ; i++) {
         
-        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/2, KStatusBarHeight + 10, KScreenWidth/2, 35) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] title:i==0?@"已实名":@"未实名" image:@""];
+        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/2, 10 , KScreenWidth/2, 35) font:[UIFont systemFontOfSize:16] color:[UIColor blackColor] title:i==0?@"已实名":@"未实名" image:@""];
         [btn setTag:i+1000];
         [btn setTitleColor:RCOLOR forState:(UIControlStateSelected)];
         if (i==0) {
@@ -67,7 +60,7 @@
 
     }
     
-    _lineView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth/2 - 50)/2, KStatusBarHeight + 45, 50, 2)];
+    _lineView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth/2 - 50)/2, 45, 50, 2)];
     [_lineView setBackgroundColor:RCOLOR];
     [self.view addSubview:_lineView];
     
@@ -77,7 +70,7 @@
 -(UIScrollView *)tmpScrollView{
     
     if (!_tmpScrollView) {
-        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, KStatusBarHeight + 47, KScreenWidth, KScreenHeight - KTabBarHeight - KStatusBarHeight - 47)];
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, KScreenWidth, KViewHeight - KTabBarHeight - 50)];
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setPagingEnabled:YES];
