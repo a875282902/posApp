@@ -47,7 +47,8 @@
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    
+
+    [[NSUserDefaults standardUserDefaults] setValue:@"12333" forKey:@"token"];
     if (UTOKEN) {
         [self.window setRootViewController:[[RootViewController alloc] init]];
     }
@@ -99,9 +100,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
     NSDictionary * userInfo = notification.request.content.userInfo;
     
+    
+    
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-        
+        [UIApplication sharedApplication].applicationIconBadgeNumber  =  0;
 //        [self presentViewController:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
@@ -113,6 +116,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        [UIApplication sharedApplication].applicationIconBadgeNumber  =  0;
         [self presentViewController:userInfo];
     }
     completionHandler();  // 系统要求执行这个方法
@@ -121,6 +125,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [self presentViewController:userInfo];
     // Required, iOS 7 Support
+    [UIApplication sharedApplication].applicationIconBadgeNumber  =  0;
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -128,6 +133,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [self presentViewController:userInfo];
     // Required,For systems with less than or equal to iOS6
+    [UIApplication sharedApplication].applicationIconBadgeNumber  =  0;
     [JPUSHService handleRemoteNotification:userInfo];
 }
 

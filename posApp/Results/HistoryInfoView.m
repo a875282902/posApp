@@ -15,7 +15,9 @@ static NSString *const cellID1 = @"HistoryInfoViewTableViewCell1";
 @interface HistoryInfoView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
-@property (nonatomic,strong) NSArray *dataArr;
+@property (nonatomic,strong) NSMutableArray *dataArr;
+
+@property (nonatomic,assign) NSInteger  page;
 
 @end
 
@@ -25,19 +27,14 @@ static NSString *const cellID1 = @"HistoryInfoViewTableViewCell1";
     
     if (self == [super initWithFrame:frame]) {
         [self addSubview:self.tmpTableView];
+        self.dataArr = [NSMutableArray array];
         [self load];
     }
     return self;
 }
 
 - (void)setIndex:(NSInteger)index{
-    if (index == 0) {
-        [self setBackgroundColor:[UIColor blueColor]];
-    }
-    else{
-        [self setBackgroundColor:[UIColor redColor]];
-    }
-    
+
     _index = index;
     
     [self.tmpTableView.header beginRefreshing];
@@ -45,13 +42,24 @@ static NSString *const cellID1 = @"HistoryInfoViewTableViewCell1";
 
 #pragma mark -- refresh
 - (void)load{
-    self.tmpTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh:)];
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf.dataArr removeAllObjects];
+        
+        [weakSelf pullDownRefresh];
+    }];
+    
+    self.tmpTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf pullUpLoadMore];
+    }];
     
 }
-
-- (void)pullDownRefresh:(MJRefreshNormalHeader *)header{
-    
-    NSDictionary *dic = @{@"service":@"Member.Yeji",@"utoken":UTOKEN};
+//下拉刷新
+- (void)pullDownRefresh{
+    NSDictionary *dic = @{@"service":@"Member.Yeji",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",self.page],@"type":self.index==0?@"2":@"1"};
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self animated:YES];
@@ -60,7 +68,9 @@ static NSString *const cellID1 = @"HistoryInfoViewTableViewCell1";
         [MBProgressHUD hideAllHUDsForView:weakSelf animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
             
-            weakSelf.dataArr = responseObject[@"data"][@"data"];
+            for (NSDictionary *dic  in responseObject[@"data"][@"data"]) {
+                [weakSelf.dataArr addObject:dic];
+            }
             
             [weakSelf.tmpTableView.header endRefreshing];
             [weakSelf.tmpTableView reloadData];
@@ -79,6 +89,38 @@ static NSString *const cellID1 = @"HistoryInfoViewTableViewCell1";
     }];
     
 }
+//上拉加载
+- (void)pullUpLoadMore{
+    NSDictionary *dic = @{@"service":@"Member.Yeji",@"utoken":UTOKEN,@"p":[NSString stringWithFormat:@"%ld",self.page],@"type":self.index==0?@"2":@"1"};
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+        
+        [MBProgressHUD hideAllHUDsForView:weakSelf animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            
+            for (NSDictionary *dic  in responseObject[@"data"][@"data"]) {
+                [weakSelf.dataArr addObject:dic];
+            }
+            
+            [weakSelf.tmpTableView.footer endRefreshing];
+            [weakSelf.tmpTableView reloadData];
+        }
+        else{
+            [weakSelf.tmpTableView.footer endRefreshing];
+            
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        [weakSelf.tmpTableView.footer endRefreshing];
+        weakSelf.page --;
+        [MBProgressHUD hideAllHUDsForView:weakSelf animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
+
 
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{

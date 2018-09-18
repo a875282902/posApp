@@ -326,25 +326,25 @@
     // 图片类型是修改后的图片
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    [self upLoadImage:selectedImage];
-    
     // 返回（结束模态对话窗体）
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+        [self upLoadImage:selectedImage];
+    }];
+    
+    
 }
 
 
 - (void)upLoadImage:(UIImage *)image{
     
-    
-    NSData* pictureData = UIImageJPEGRepresentation(image,0.2);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSData* pictureData = UIImageJPEGRepresentation(image,1);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
     NSLog(@"调用了image@String方法");
     //    NSLog(@"%@这个值是什么实现的？",pictureData);
     NSString* pictureDataString = [pictureData base64Encoding];
     
-    
     NSDictionary *dic = @{@"service":@"Main.Upload",@"utoken":UTOKEN,@"img":pictureDataString};
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     [HttpRequest POST:KURL parameters:dic success:^(id responseObject) {

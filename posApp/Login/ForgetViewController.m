@@ -145,7 +145,7 @@
     }
     
     
-    NSDictionary *dic = @{@"service":@"Member.Register",@"phone":phone,@"utoken":@"123456",@"yzm":yzm,@"password":password};
+    NSDictionary *dic = @{@"service":@"Member.Findpwd",@"phone":phone,@"yzm":yzm,@"password":password};
     
     if (inviterphone && [inviterphone length] > 0) {
         
@@ -158,7 +158,8 @@
         
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
-            [ViewHelps showHUDWithText:@"注册成功"];
+            [ViewHelps showHUDWithText:@"修改成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
             

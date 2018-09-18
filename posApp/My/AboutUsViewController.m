@@ -57,7 +57,7 @@
         height+= 45;
     }
 
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KViewHeight - 60, KScreenWidth, 60) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor] alignment:(NSTextAlignmentCenter) title:@"瑞联盟 版本所有 \nCopyRight @ 2018.ALL Rights Reserved"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KViewHeight - 60, KScreenWidth, 60) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor] alignment:(NSTextAlignmentCenter) title:@"易激活 版本所有 \nCopyRight @ 2018.ALL Rights Reserved"]];
     
 }
 

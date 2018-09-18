@@ -98,37 +98,37 @@
         [ViewHelps showHUDWithText:@"请输入正确的手机号"];
         return;
     }
-    
-    [sender removeTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
-    
-    if (!self.timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeTime) userInfo:nil repeats:YES];
-    }
-    //开启定时器
-    [self.timer setFireDate:[NSDate distantPast]];
+
     
     
-//    NSDictionary *dic = @{@"service":@"Member.Sendsms",@"phone":phone,@"token":[[NSUserDefaults standardUserDefaults] valueForKey:@"token"]};
-//
-//    __weak typeof(self) weakSelf = self;
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
-//
-//        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-//        if ([responseObject[@"ret"] integerValue]==200) {
-//            [ViewHelps showHUDWithText:@"验证码发送成功，请注意查收"];
-//
-//        }
-//        else{
-//
-//            [ViewHelps showHUDWithText:responseObject[@"msg"]];
-//        }
-//
-//    } failure:^(NSError *error) {
-//
-//        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-//        [RequestSever showMsgWithError:error];
-//    }];
+    NSDictionary *dic = @{@"service":@"Member.Sendsms",@"phone":phone,@"token":[[NSUserDefaults standardUserDefaults] valueForKey:@"token"]};
+
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HttpRequest GET:KURL parameters:dic success:^(id responseObject) {
+
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        if ([responseObject[@"ret"] integerValue]==200) {
+            [ViewHelps showHUDWithText:@"验证码发送成功，请注意查收"];
+            
+            [sender removeTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
+            
+            if (!self.timer) {
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeTime) userInfo:nil repeats:YES];
+            }
+            //开启定时器
+            [self.timer setFireDate:[NSDate distantPast]];
+        }
+        else{
+
+            [ViewHelps showHUDWithText:responseObject[@"msg"]];
+        }
+
+    } failure:^(NSError *error) {
+
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 
@@ -183,6 +183,7 @@
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if ([responseObject[@"ret"] integerValue]==200) {
             [ViewHelps showHUDWithText:@"注册成功"];
+            [weakSelf login];
         }
         else{
             

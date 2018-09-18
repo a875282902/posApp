@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "RootViewController.h"
 #import "JPUSHService.h"
+#import "ForgetViewController.h"
 
 @interface LoginViewController ()
 {
@@ -112,7 +113,8 @@
 
 - (void)forgetAccount{
     
-    
+    ForgetViewController *vc = [[ForgetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES]; 
 }
 
 /*

@@ -85,7 +85,7 @@
     [self.view addSubview:back];
     
 
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KStatusBarHeight, KScreenWidth, MDXFrom6(55)) font:[UIFont boldSystemFontOfSize:19] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"本月业界"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, KStatusBarHeight, KScreenWidth, MDXFrom6(55)) font:[UIFont boldSystemFontOfSize:19] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"本月业绩"]];
     
     CGFloat height = KStatusBarHeight + MDXFrom6(55);
     
