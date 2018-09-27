@@ -253,7 +253,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  * 清楚所有的缓存文件 niuniu
  */
 
--(void)cleanAllFilesOfDiskWithCompletionBlock:(void (^)())completionBlock;
+-(void)cleanAllFilesOfDiskWithCompletionBlock:(void (^)(void))completionBlock;
 
 
 

@@ -51,7 +51,7 @@
 
 #define KHeight(s,w,h,f) [s boundingRectWithSize:CGSizeMake(w, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:f]} context:nil]
 
-#define KURL @"http://api.ruilianmeng.lyqianniu.com/"
+#define KURL @"http://47.94.210.250:8000/"
 
 
 //参数

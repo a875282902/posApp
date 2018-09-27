@@ -56,12 +56,12 @@
 - (void)closeAnimated:(BOOL)animated {
     if (animated) {
         [UIView animateWithDuration:0.2 animations:^{
-            _currentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+            self->_currentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.3 animations:^{
-                _currentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
+                self->_currentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
             } completion:^(BOOL finished) {
-                [_currentView removeFromSuperview];
+                [self->_currentView removeFromSuperview];
             }];
         }];
     } else {

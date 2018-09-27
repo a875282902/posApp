@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *inviterPhone;
 @property (weak, nonatomic) IBOutlet UILabel *agreeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 
 @property (nonatomic,strong)NSTimer *timer;
 
@@ -60,12 +61,15 @@
     
     [self.registerButton.layer setCornerRadius:5];
     
-    NSString *str = @"我已阅读和同意《瑞联盟注册协议》";
+    [self.agreeLabel setHidden:YES];
+    [self.agreeBtn setHidden:YES];
+    
+    NSString *str = @"我已阅读和同意《用户协议》";
     
     NSMutableAttributedString *attS = [[NSMutableAttributedString alloc] initWithString:str];
     
     [attS setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#3b3b3b"]} range:NSMakeRange(0, str.length)];
-    [attS setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(7, 9)];
+    [attS setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(7, 6)];
     [self.agreeLabel setAttributedText:attS];
     
     [self.agreeLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkAgree:)]];

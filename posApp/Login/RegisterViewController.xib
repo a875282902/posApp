@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
+                <outlet property="agreeBtn" destination="cqS-3J-EVj" id="ZQe-Nl-N02"/>
                 <outlet property="agreeLabel" destination="9V7-Dh-O12" id="IkH-ko-DU2"/>
                 <outlet property="codeTextField" destination="pKX-vF-Ily" id="FXt-7z-am5"/>
                 <outlet property="getCode" destination="gGt-QV-YsF" id="uGp-yB-ufp"/>

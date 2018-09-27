@@ -94,7 +94,7 @@
             [label setTag:i];
             [backView addSubview:label];
             
-            [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - MDXFrom6(35), MDXFrom6(20), MDXFrom6(6), MDXFrom6(10)) image:@"jilu_rili_arrow"]];
+            [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - MDXFrom6(35), MDXFrom6(20), MDXFrom6(10), MDXFrom6(10)) image:@"arrow_down"]];
         
         }
         
@@ -140,15 +140,15 @@
         return;
     }
     if (!provincesDic) {
-        [ViewHelps showHUDWithText:@"请选择您的省份"];
+        [ViewHelps showHUDWithText:@"请选择您的所在区域"];
         return;
     }
     if (!cityDic) {
-        [ViewHelps showHUDWithText:@"请选择您的城市"];
+        [ViewHelps showHUDWithText:@"请选择您的所在区域"];
         return;
     }
     if (!countyDic) {
-        [ViewHelps showHUDWithText:@"请选择您所在的区"];
+        [ViewHelps showHUDWithText:@"请选择您的所在区域"];
         return;
     }
     if ([self.textArr[3] length] == 0) {

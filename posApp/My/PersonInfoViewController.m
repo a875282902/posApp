@@ -106,7 +106,7 @@
     
     [cell.textLabel setText:tArr[indexPath.section][indexPath.row]];
     [cell.textLabel setTextColor:MDRGBA(145, 145, 145, 1)];
-    [cell.detailTextLabel setText:self.dataArr[indexPath.section][indexPath.row]];
+    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.section][indexPath.row]]];
     [cell.detailTextLabel setTextColor:MDRGBA(20, 20, 20, 1)];
     
     return cell;

@@ -40,7 +40,7 @@
     height += 50;
     
     NSArray *tArr = @[@"微信公众号",@"联系电话",@"电子邮箱"];
-    NSArray *dArr = @[@"易激活",@"400-168-4256",@"ruilianm@163.com"];
+    NSArray *dArr = @[@"易激活",@"--",@"yijihuo@yeah.net"];
     
     for (NSInteger i = 0 ; i < 3 ; i++) {
         
